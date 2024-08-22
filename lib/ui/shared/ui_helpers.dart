@@ -4,7 +4,7 @@ import 'app_colors.dart';
 
 /// Contains useful consts to reduce boilerplate and duplicate code
 class UIHelper {
-  // Vertical spacing constants. Adjust to your liking.
+  // Vertical spacing constants..
   static const double _VerticalSpaceSmall = 10.0;
   static const double _VerticalSpaceMedium = 40.0;
   static const double _VerticalSpaceLarge = 72.0;
@@ -40,10 +40,18 @@ class UIHelper {
     ),
   );
 
+  static Widget customHorizontalSpace(double space) => SizedBox(
+        width: space,
+      );
+
+  static Widget customVerticalSpace(double space) => SizedBox(
+        height: space,
+      );
+
+  // horizontal and vertical spaces based on screen size
   static getHorizontalSpaceMedium(Size size) => SizedBox(
         width: size.width * 0.049,
       );
-
   static Widget getVerticalSpaceLarge(Size size) => SizedBox(
         height: size.height * 0.073,
       );

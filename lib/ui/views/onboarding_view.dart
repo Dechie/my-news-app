@@ -6,6 +6,7 @@ import 'package:my_news_app/ui/shared/ui_helpers.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../core/constants/app_contstants.dart';
+import '../widgets/blue_large_button.dart';
 
 // this is the onboarding page, which contains the page
 // which the user faces after first opening the app.
@@ -17,7 +18,6 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  final PageController _pageController = PageController(initialPage: 0);
   final CarouselSliderController _carouselSliderController =
       CarouselSliderController();
   List<String> imagePaths = [
@@ -25,7 +25,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     "img2.jpg",
     "img3.jpg",
   ];
-
+  int _current = 0;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -38,12 +38,14 @@ class _OnboardingViewState extends State<OnboardingView> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // get vertical space that has certain ratio of
+          // screen size.
           UIHelper.getVerticalSpaceLarge(size),
           SizedBox(
             // the widget that creates a page view ui
             // with the images
             // it's a custom implementation of pageview using
-            // listview and smooth_page_indicator package
+            // carousel_slider and smooth_page_indicator packages
             width: size.width,
             height: size.height * 0.41,
             //color: Colors.red,
@@ -53,26 +55,30 @@ class _OnboardingViewState extends State<OnboardingView> {
                   enlargeCenterPage: true,
                   height: size.height * 0.41,
                   scrollDirection: Axis.horizontal,
+                  reverse: false,
                   onPageChanged: (val, _) {
                     setState(() {
-                      print("new index $val");
-                      _pageController.jumpToPage(val);
+                      _current = val;
                     });
                   }),
+
               carouselController: _carouselSliderController,
+              // carouselcontroller keeps track of scroll and updates the index
+              // of the image that is currently in the center.
+              // then the smooth indicator uses that index to show
+              // the dots at the bottom
               itemBuilder: (context, index, realIndex) => SizedBox(
                 height: size.height * .41,
                 width: size.width * .8,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(
                       commonBorderRadius,
                     ),
-                  ),
-                  child: Image.asset(
-                    "assets/images/${imagePaths[index]}",
-                    fit: BoxFit.cover,
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/${imagePaths[index]}"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -81,15 +87,13 @@ class _OnboardingViewState extends State<OnboardingView> {
           ),
           UIHelper.getVerticalSpaceMedium(size), // 45.9 / 926.75 = 0.049
           // UIHelper contains space widgets and other useful widgets as well
-          Container(
+          SizedBox(
             width: 63.0,
             height: 9,
-            color: Colors.white,
             child: Center(
-              child: SmoothPageIndicator(
-                controller: _pageController,
-                count: 4,
-                axisDirection: Axis.horizontal,
+              child: AnimatedSmoothIndicator(
+                activeIndex: _current,
+                count: 3,
                 effect: const WormEffect(
                   activeDotColor: primaryBlue,
                   dotColor: Color(0xfff3f4f6),
@@ -112,7 +116,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           UIHelper.getVerticalSpaceMedium(size),
           SizedBox(
             width: 246,
-            height: 55,
+            height: 45,
             child: Text(
               "All news in one place, be the first to know last news",
               style: GoogleFonts.inter(
@@ -123,23 +127,11 @@ class _OnboardingViewState extends State<OnboardingView> {
             ),
           ),
           UIHelper.getVerticalSpaceLarge(size),
-          Container(
-            width: size.width * .89,
-            height: 55,
-            decoration: BoxDecoration(
-              color: primaryBlue,
-              borderRadius: BorderRadius.circular(commonBorderRadius),
-            ),
-            child: Center(
-              child: Text(
-                "Get Started",
-                style: GoogleFonts.inter(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
-              ),
-            ),
+          // this button navigates to the next screen
+          CommonButton(
+            width: size.width * 0.89,
+            height: 45.0,
+            onPress: () {},
           ),
         ],
       ),
