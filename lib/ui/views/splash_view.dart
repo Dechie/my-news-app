@@ -10,7 +10,7 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: splashBackground,
+      backgroundColor: primaryBlue,
       body: Center(
         child: SizedBox(
             width: size.width * 0.2,
