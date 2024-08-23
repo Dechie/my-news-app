@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 import 'package:my_news_app/ui/shared/text_styles.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
-import 'package:my_news_app/ui/widgets/company_logo.dart';
+import 'package:my_news_app/ui/widgets/rounded_rect_image.dart';
 
 import '../../../core/models/article.dart';
 
@@ -99,11 +99,11 @@ class NewsCardOne extends StatelessWidget {
                       width: 36,
                       height: 36,
                       borderRadius: 4,
-                      imagePath: "assets/logos/${article.newsAgency.logo}",
+                      imagePath: "assets/logos/${article.publisherAgency.logo}",
                     ),
                     UIHelper.customHorizontalSpace(5),
                     Text(
-                      article.newsAgency.sourceTitle,
+                      article.publisherAgency.sourceTitle,
                       style: subHeaderStyle,
                     ),
                     const Spacer(),

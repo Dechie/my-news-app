@@ -129,18 +129,14 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 UIHelper.customVerticalSpace(16),
-                Padding(
-                  padding: const EdgeInsets.only(right: 18.0),
-                  child: SizedBox(
-                    height: 404,
-                    width: size.width * 0.9,
-                    child: ListView.builder(
-                      itemBuilder: (_, index) => NewsCardTwo(
-                        article: recommendedArticles[index],
-                      ),
-                    ),
+                // we use spread operator, to list the recommended articles
+                // from their data list into this listview
+                ...recommendedArticles.map(
+                  (article) => NewsCardTwo(
+                    article: article,
+                    size: size,
                   ),
-                )
+                ),
               ],
             ),
           ),

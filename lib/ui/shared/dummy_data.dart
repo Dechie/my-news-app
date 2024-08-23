@@ -9,20 +9,18 @@ List<Article> articles = [
   Article(
     id: 0,
     title: "Global Summit on Climate Change: Historic Agreement Reached",
-    newsSource: "BBC News",
     image: "img1.jpg",
     category: "Environment",
     date: "Jun 9, 2023",
-    newsAgency: newsAgencies[0],
+    publisherAgency: newsAgencies[0],
   ),
   Article(
     id: 1,
     title: "Tech Giant Unveils Revolutionary AI-powered Device",
-    newsSource: "The NYT",
     image: "img3.jpg",
     category: "Technology",
     date: "Jun 9, 2023",
-    newsAgency: newsAgencies[1],
+    publisherAgency: newsAgencies[1],
   ),
 ];
 List<NewsAgency> newsAgencies = [
@@ -53,11 +51,19 @@ List<NewsAgency> newsAgencies = [
 ];
 List<Article> recommendedArticles = [
   Article(
-      id: 2,
-      title: "Tech Startup Secures \$50 Million Funding for Expansion",
-      newsSource: "Forbes",
-      image: "img1.jpg",
-      category: "Business",
-      date: "Jun 11, 2023",
-      newsAgency: newsAgencies[2]),
+    id: 2,
+    title: "Tech Startup Secures \$50 Million Funding for Expansion",
+    image: "recommended_img1.jpg",
+    category: "Business",
+    date: "Jun 11, 2023",
+    publisherAgency: newsAgencies[2],
+  ),
+  Article(
+    id: 3,
+    title: "Star Athlete Breaks World Record in Olympic Event",
+    date: "Jun 10, 2023",
+    category: "Business",
+    image: "recommended_img1.jpg",
+    publisherAgency: newsAgencies[2],
+  ),
 ];
