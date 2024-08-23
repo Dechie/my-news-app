@@ -11,11 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: RoutePaths.login,
+      initialRoute: RoutePaths.home,
       onGenerateRoute: RouterUtil.generateRoute,
     );
   }

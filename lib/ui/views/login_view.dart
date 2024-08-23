@@ -2,10 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
-import 'package:my_news_app/ui/widgets/blue_large_button.dart';
+import 'package:my_news_app/ui/widgets/buttons/blue_large_button.dart';
+import 'package:my_news_app/ui/widgets/buttons/outlined_button.dart';
 import 'package:my_news_app/ui/widgets/login_text_field.dart';
-import 'package:my_news_app/ui/widgets/outlined_button.dart';
 
+import '../shared/text_styles.dart';
 import '../shared/ui_helpers.dart';
 
 class LoginView extends StatelessWidget {
@@ -36,11 +37,7 @@ class LoginView extends StatelessWidget {
               Text(
                 textAlign: TextAlign.start,
                 "Stay informed effortlessly. Sign in and explore a world of news",
-                style: GoogleFonts.sourceSans3(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: commonGreyColor,
-                ),
+                style: subHeaderStyle,
               ),
               UIHelper.getVerticalSpaceMedium(size),
               SizedBox(
@@ -95,9 +92,9 @@ class LoginView extends StatelessWidget {
                       child: Container(
                         height: 2,
                         decoration: BoxDecoration(
-                          color: const Color(0xffededed),
+                          color: lighterGrey,
                           border: Border.all(
-                            color: const Color(0xffededed),
+                            color: lighterGrey,
                             width: 1,
                           ),
                         ),
@@ -118,9 +115,9 @@ class LoginView extends StatelessWidget {
                       child: Container(
                         height: 3,
                         decoration: BoxDecoration(
-                          color: const Color(0xffededed),
+                          color: lighterGrey,
                           border: Border.all(
-                            color: const Color(0xffededed),
+                            color: lighterGrey,
                             width: 1,
                           ),
                         ),
@@ -165,7 +162,7 @@ class LoginView extends StatelessWidget {
                           TextSpan(
                               text: "Sign Up",
                               style: GoogleFonts.sourceSans3(
-                                color: const Color(0xff121314),
+                                color: darkColor2,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
                               ),

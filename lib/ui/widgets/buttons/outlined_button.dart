@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/constants/app_contstants.dart';
-import '../shared/app_colors.dart';
+import '../../../core/constants/app_contstants.dart';
+import '../../shared/app_colors.dart';
 
 class MyOutlinedButton extends StatelessWidget {
   final void Function() onPress;
@@ -40,7 +40,7 @@ class MyOutlinedButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/$imagePath",
+              "assets/logos/$imagePath",
               width: 18,
               height: 18,
             ),

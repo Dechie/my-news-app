@@ -11,7 +11,7 @@ class RouterUtil {
     switch (settings.name) {
       case RoutePaths.splash:
         return MaterialPageRoute(builder: (_) => const SplashView());
-      case RoutePaths.hoome:
+      case RoutePaths.home:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case RoutePaths.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingView());

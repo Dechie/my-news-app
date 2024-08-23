@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/constants/app_contstants.dart';
-import '../shared/app_colors.dart';
+import '../../../core/constants/app_contstants.dart';
+import '../../shared/app_colors.dart';
 
 class CommonButton extends StatelessWidget {
   final void Function() onPress;

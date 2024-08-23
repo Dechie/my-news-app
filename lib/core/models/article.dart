@@ -1,3 +1,5 @@
+import 'package:my_news_app/core/models/news_agency.dart';
+
 class Article {
   int id;
   String title;
@@ -5,6 +7,7 @@ class Article {
   String newsSource;
   String date;
   String category;
+  NewsAgency newsAgency;
 
   Article({
     required this.id,
@@ -13,10 +16,12 @@ class Article {
     required this.image,
     required this.category,
     required this.date,
+    required this.newsAgency,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
+      newsAgency: json['newsAgency'],
       id: json['id'],
       title: json['title'],
       newsSource: json['newsSource'],
