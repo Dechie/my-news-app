@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_news_app/ui/views/discover_view.dart';
 import 'package:my_news_app/ui/views/onboarding_view.dart';
 import 'package:my_news_app/ui/views/single_publisher.dart';
 import 'package:my_news_app/ui/views/splash_view.dart';
@@ -8,6 +9,9 @@ import '../core/models/news_agency.dart';
 import 'views/home_view.dart';
 import 'views/login_view.dart';
 
+/// this page generates routes for the views,
+/// in a way that's suitable for named navigator
+/// that is the preferred way of navigation
 class RouterUtil {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -19,7 +23,8 @@ class RouterUtil {
         return MaterialPageRoute(builder: (_) => const OnboardingView());
       case RoutePaths.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
-
+      case RoutePaths.discover:
+        return MaterialPageRoute(builder: (_) => const DiscoverView());
       case RoutePaths.singlePublisher:
         final publisher =
             settings.arguments as NewsAgency?; // Cast arguments to NewsAgency

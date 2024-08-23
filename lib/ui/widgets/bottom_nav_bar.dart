@@ -56,7 +56,7 @@ class _BottomNavyBarState extends State<BottomNavyBar> {
         ),
       ),
       NavigationItem(
-        route: RoutePaths.login,
+        route: RoutePaths.discover,
         svgPath: selectedIndex == 1
             ? "discover/discover_active.svg"
             : "discover/discover_inactive.svg",

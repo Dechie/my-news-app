@@ -43,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
           width: size.width,
           height: size.height,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(18.0, 10, 0, 0),
+            padding: const EdgeInsets.only(left: 18.0, top: 10),
             child: ListView(
               children: [
                 SizedBox(
