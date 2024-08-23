@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
 
+import '../widgets/bottom_nav_bar.dart';
+
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
 
@@ -11,6 +13,9 @@ class SplashView extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: primaryBlue,
+      bottomNavigationBar: const BottomNavyBar(
+        selectedIndex: 3,
+      ),
       body: Center(
         child: SizedBox(
             width: size.width * 0.2,

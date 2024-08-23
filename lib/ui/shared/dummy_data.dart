@@ -4,25 +4,6 @@ import '../../core/models/news_agency.dart';
 // since we don't use any actual api requests,
 // we will instead feed the ui with these dummy data values.
 // we will still mock the api requests though.
-
-List<Article> articles = [
-  Article(
-    id: 0,
-    title: "Global Summit on Climate Change: Historic Agreement Reached",
-    image: "img1.jpg",
-    category: "Environment",
-    date: "Jun 9, 2023",
-    publisherAgency: newsAgencies[0],
-  ),
-  Article(
-    id: 1,
-    title: "Tech Giant Unveils Revolutionary AI-powered Device",
-    image: "img3.jpg",
-    category: "Technology",
-    date: "Jun 9, 2023",
-    publisherAgency: newsAgencies[1],
-  ),
-];
 List<NewsAgency> newsAgencies = [
   NewsAgency(
     id: 0,
@@ -48,6 +29,14 @@ List<NewsAgency> newsAgencies = [
     followers: 1341,
     following: 14314,
   ),
+  NewsAgency(
+    id: 3,
+    sourceTitle: "ESPN",
+    logo: "espn-logo.png",
+    totalNews: 43143,
+    followers: 1341,
+    following: 14314,
+  ),
 ];
 List<Article> recommendedArticles = [
   Article(
@@ -62,8 +51,27 @@ List<Article> recommendedArticles = [
     id: 3,
     title: "Star Athlete Breaks World Record in Olympic Event",
     date: "Jun 10, 2023",
-    category: "Business",
-    image: "recommended_img1.jpg",
-    publisherAgency: newsAgencies[2],
+    category: "Sports",
+    image: "recommended_img2.jpg",
+    publisherAgency: newsAgencies[3],
+  ),
+];
+
+List<Article> trendingArticles = [
+  Article(
+    id: 0,
+    title: "Global Summit on Climate Change: Historic Agreement Reached",
+    image: "trending_img1.jpg",
+    category: "Environment",
+    date: "Jun 9, 2023",
+    publisherAgency: newsAgencies[0],
+  ),
+  Article(
+    id: 1,
+    title: "Tech Giant Unveils Revolutionary AI-powered Device",
+    image: "trending_img2.jpg",
+    category: "Technology",
+    date: "Jun 9, 2023",
+    publisherAgency: newsAgencies[1],
   ),
 ];

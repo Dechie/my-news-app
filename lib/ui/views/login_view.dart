@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
+import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/buttons/blue_large_button.dart';
 import 'package:my_news_app/ui/widgets/buttons/outlined_button.dart';
 import 'package:my_news_app/ui/widgets/login_text_field.dart';
@@ -16,6 +17,9 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: const BottomNavyBar(
+        selectedIndex: 1,
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(

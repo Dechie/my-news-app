@@ -10,16 +10,19 @@ import '../../../core/models/article.dart';
 class NewsCardOne extends StatelessWidget {
   final Article article;
 
+  final double heightScale, widthScale;
   const NewsCardOne({
     super.key,
     required this.article,
+    required this.heightScale,
+    required this.widthScale,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 301,
-      height: 305,
+      height: 305 * heightScale,
       child: DecoratedBox(
         decoration: const BoxDecoration(color: newsCardBg),
         child: Column(
@@ -29,42 +32,32 @@ class NewsCardOne extends StatelessWidget {
               children: [
                 RoundedRectImage(
                   width: 285,
-                  height: 161,
+                  height: 161 * heightScale,
                   borderRadius: 8,
                   imagePath: "assets/images/${article.image}",
                 ),
-                // Container(
-                //   width: 285,
-                //   height: 161,
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(8),
-                //     image: DecorationImage(
-                //       image: AssetImage(
-                //         "assets/images/${article.image}",
-                //       ),
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                // ),
                 Positioned(
-                  top: 18,
-                  left: 18, // parent widget's difference added to 18
+                  top: 18 * heightScale,
+                  left:
+                      18 * widthScale, // parent widget's difference added to 18
                   child: SizedBox(
-                    height: 27,
-                    width: 84,
+                    height: 27 * heightScale,
+                    width: 90 * heightScale,
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: lighterBlue,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 6),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8 * widthScale,
+                          vertical: 6 * heightScale,
+                        ),
                         child: Text(
                           textAlign: TextAlign.center,
                           article.category,
                           style: subHeaderStyle.copyWith(
-                            fontSize: 12,
+                            fontSize: 12 * widthScale,
                             fontWeight: FontWeight.w400,
                             color: Colors.white,
                           ),
@@ -75,42 +68,46 @@ class NewsCardOne extends StatelessWidget {
                 ),
               ],
             ),
-            UIHelper.customVerticalSpace(12),
+            UIHelper.customVerticalSpace(12 * heightScale),
             SizedBox(
-              height: 72,
-              width: 269,
+              height: 75 * heightScale,
+              width: 269 * widthScale,
               child: Text(
                 article.title,
                 style: GoogleFonts.roboto(
-                  fontSize: 18,
+                  fontSize: 17 * heightScale,
                   color: darkColor,
                   fontWeight: FontWeight.w700,
                 ),
               ),
             ),
-            UIHelper.customVerticalSpace(12),
+            UIHelper.customVerticalSpace(8 * heightScale),
             SizedBox(
-              width: 301,
+              width: 301 * heightScale,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0 * widthScale),
                 child: Row(
                   children: [
                     RoundedRectImage(
-                      width: 36,
-                      height: 36,
+                      // multiply same number to preserve square shape
+                      width: 36 * heightScale,
+                      height: 36 * heightScale,
                       borderRadius: 4,
                       imagePath: "assets/logos/${article.publisherAgency.logo}",
                     ),
                     UIHelper.customHorizontalSpace(5),
                     Text(
                       article.publisherAgency.sourceTitle,
-                      style: subHeaderStyle,
+                      style: subHeaderStyle.copyWith(
+                        fontSize: 16 * heightScale,
+                      ),
                     ),
                     const Spacer(),
                     UIHelper.customHorizontalSpace(5),
                     Text(
                       article.date,
-                      style: subHeaderStyle,
+                      style:
+                          subHeaderStyle.copyWith(fontSize: 16 * heightScale),
                     ),
                   ],
                 ),

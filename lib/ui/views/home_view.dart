@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
+import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/cards/news_card_one.dart';
 import 'package:my_news_app/ui/widgets/cards/news_card_two.dart';
 
@@ -23,12 +24,21 @@ class _HomeViewState extends State<HomeView> {
     // size contains the width and height of current screen.
     print("${size.height}");
 
+    // since the figma design dimensions turn out to be
+    // larger than usual mobile phone dimensions, we will scale it
+    // to given screen size, and multiply every thing with that scale.
+    var widthScale = size.width / 428;
+    var heightScale = size.height / 926;
+    print("widthscale: $widthScale, heightscale: $heightScale");
     return Scaffold(
       backgroundColor: Colors.white,
-      // we will not be using appbar, rather our own custom widgets, so
-      // to avoid content going into the status bar, we will wrap our whole
-      // screen with the SafeArea widget
+      bottomNavigationBar: const BottomNavyBar(
+        selectedIndex: 0,
+      ),
       body: SafeArea(
+        // we will not be using appbar, rather our own custom widgets, so
+        // to avoid content going into the status bar, we will wrap our whole
+        // screen with the SafeArea widget
         child: SizedBox(
           width: size.width,
           height: size.height,
@@ -38,17 +48,21 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 SizedBox(
                   width: size.width * 0.9,
-                  height: 52,
+                  height: 52 * heightScale,
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 18.0),
+                    padding: EdgeInsets.only(right: 18.0 * widthScale),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SquareIconButton(
+                          widthScale: widthScale,
+                          heightScale: heightScale,
                           iconData: FontAwesomeIcons.linesLeaning,
                           onPress: () {},
                         ),
                         SquareIconButton(
+                          widthScale: widthScale,
+                          heightScale: heightScale,
                           iconData: FontAwesomeIcons.bell,
                           onPress: () {},
                         )
@@ -56,28 +70,28 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                 ),
-                UIHelper.customVerticalSpace(24),
+                UIHelper.customVerticalSpace(24 * heightScale),
                 Text(
                   "Welcome Back, Tyler!",
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w600,
-                    fontSize: 26,
+                    fontSize: 26 * widthScale,
                     color: darkColor,
                   ),
                 ),
                 Text(
                   "Discover a world of news that matters to you",
                   style: GoogleFonts.sourceSans3(
-                    fontSize: 18,
+                    fontSize: 18 * widthScale,
                     fontWeight: FontWeight.w400,
                     color: commonGreyColor,
                   ),
                 ),
-                UIHelper.customVerticalSpace(24),
+                UIHelper.customVerticalSpace(24 * heightScale),
                 Padding(
                   padding: const EdgeInsets.only(right: 18.0),
                   child: SizedBox(
-                    height: 25,
+                    height: 26 * heightScale,
                     width: double.infinity,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,14 +100,14 @@ class _HomeViewState extends State<HomeView> {
                           "Trending News",
                           style: GoogleFonts.roboto(
                             fontWeight: FontWeight.w500,
-                            fontSize: 20,
+                            fontSize: 20 * heightScale,
                             color: darkColor,
                           ),
                         ),
                         Text(
                           "See all",
                           style: GoogleFonts.sourceSans3(
-                            fontSize: 16,
+                            fontSize: 16 * widthScale,
                             fontWeight: FontWeight.w400,
                             color: commonGreyColor,
                           ),
@@ -102,40 +116,47 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                 ),
-                UIHelper.customVerticalSpace(16),
+                UIHelper.customVerticalSpace(16 * heightScale),
                 SizedBox(
-                  height: 305,
+                  height: 305 * heightScale,
                   width: double.infinity,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: 2,
                     itemBuilder: (context, index) {
-                      print("printing item $index");
                       return NewsCardOne(
-                        article: articles[index],
+                        widthScale: widthScale,
+                        heightScale: heightScale,
+                        article: trendingArticles[index],
                       );
                     },
                     separatorBuilder: (context, index) =>
-                        UIHelper.customHorizontalSpace(18),
+                        UIHelper.customHorizontalSpace(18 * widthScale),
                   ),
                 ),
-                UIHelper.customVerticalSpace(32),
+                UIHelper.customVerticalSpace(30 * heightScale),
                 Text(
                   "Recommendation",
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
-                    fontSize: 20,
+                    fontSize: 20 * widthScale,
                     color: darkColor,
                   ),
                 ),
-                UIHelper.customVerticalSpace(16),
+                UIHelper.customVerticalSpace(16 * heightScale),
                 // we use spread operator, to list the recommended articles
                 // from their data list into this listview
                 ...recommendedArticles.map(
-                  (article) => NewsCardTwo(
-                    article: article,
-                    size: size,
-                  ),
+                  (article) {
+                    print(
+                        "title: ${article.title}, id: ${article.id}, publisher: ${article.publisherAgency.sourceTitle}");
+                    return NewsCardTwo(
+                      widthScale: widthScale,
+                      heightScale: heightScale,
+                      article: article,
+                      size: size,
+                    );
+                  },
                 ),
               ],
             ),

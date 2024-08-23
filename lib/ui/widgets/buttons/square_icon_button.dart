@@ -5,8 +5,11 @@ class SquareIconButton extends StatelessWidget {
   final IconData iconData;
 
   final void Function() onPress;
+  final double widthScale, heightScale;
   const SquareIconButton({
     super.key,
+    required this.widthScale,
+    required this.heightScale,
     required this.iconData,
     required this.onPress,
   });
@@ -16,8 +19,8 @@ class SquareIconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: SizedBox(
-        width: 52,
-        height: 52,
+        width: 52 * heightScale,
+        height: 52 * heightScale,
         child: DecoratedBox(
           decoration: BoxDecoration(
             border: Border.all(
@@ -31,7 +34,7 @@ class SquareIconButton extends StatelessWidget {
             child: Center(
               child: Icon(
                 iconData,
-                size: 24,
+                size: 24 * heightScale,
               ),
             ),
           ),
