@@ -92,7 +92,8 @@ class NewsCardOne extends StatelessWidget {
                     const Icon(FontAwesomeIcons.newspaper),
                     UIHelper.customHorizontalSpace(5),
                     Text(
-                      article.publisherAgency.sourceTitle,
+                      article.publisherAgency?.sourceTitle ??
+                          "error source title",
                       style: subHeaderStyle,
                     ),
                     const Spacer(),

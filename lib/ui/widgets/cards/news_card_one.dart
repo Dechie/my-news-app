@@ -93,11 +93,13 @@ class NewsCardOne extends StatelessWidget {
                       width: 36 * heightScale,
                       height: 36 * heightScale,
                       borderRadius: 4,
-                      imagePath: "assets/logos/${article.publisherAgency.logo}",
+                      imagePath:
+                          "assets/logos/${article.publisherAgency?.logo ?? "bbc-logo.png"}",
                     ),
                     UIHelper.customHorizontalSpace(5),
                     Text(
-                      article.publisherAgency.sourceTitle,
+                      article.publisherAgency?.sourceTitle ??
+                          "error source title",
                       style: subHeaderStyle.copyWith(
                         fontSize: 16 * heightScale,
                       ),

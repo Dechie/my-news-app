@@ -1,11 +1,15 @@
+import 'package:my_news_app/core/models/article.dart';
+
 class User {
   int id;
   String name;
   String username;
   String description;
+  final String image;
   int totalNews;
   int followers;
   int following;
+  List<Article> articlesPublished;
 
   User({
     required this.id,
@@ -15,7 +19,8 @@ class User {
     required this.totalNews,
     required this.followers,
     required this.following,
-  });
+    required this.image,
+  }) : articlesPublished = [];
 
   // factory User.fromJson(Map<String, dynamic> json) {
   //   return User(
@@ -34,6 +39,7 @@ class User {
       followers: 5,
       following: 10,
       description: "This is Tyler Mason News, Enjoy!",
+      image: "tyler.png",
     );
   }
 

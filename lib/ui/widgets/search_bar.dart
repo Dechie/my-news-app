@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:my_news_app/ui/shared/text_styles.dart';
 
 import '../../core/models/article.dart';
 import '../shared/dummy_data.dart';
@@ -21,6 +21,7 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DummyData data = DummyData();
     return SearchAnchor(
       viewLeading: SearchAnchor(
         builder: (context, controller) {
@@ -34,8 +35,9 @@ class CustomSearchBar extends StatelessWidget {
         suggestionsBuilder: (context, query) {
           // Combine recommendedArticles and trendingArticles
           List<Article> combinedArticles = [
-            ...recommendedArticles,
-            ...trendingArticles,
+            // TODO: implement provider
+            ...data.recommendedArticles,
+            ...data.trendingArticles,
           ];
 
           // Filter the articles based on the search query
@@ -72,10 +74,10 @@ class CustomSearchBar extends StatelessWidget {
             const Color(0xffd9eff9).withOpacity(0.3),
           ),
           hintStyle: WidgetStatePropertyAll<TextStyle>(
-            GoogleFonts.sourceSans3(
+            /// take the common sourceSans
+            /// style from text_styles and modify the color only
+            sourceSansW400A(widthScale).copyWith(
               color: const Color(0xff666666),
-              fontSize: 18 * widthScale,
-              fontWeight: FontWeight.w400,
             ),
           ),
           leading: Padding(
@@ -91,8 +93,8 @@ class CustomSearchBar extends StatelessWidget {
       },
       suggestionsBuilder: (context, query) {
         List<Article> combinedArticles = [
-          ...recommendedArticles,
-          ...trendingArticles,
+          ...data.recommendedArticles,
+          ...data.trendingArticles,
         ];
 
         // Filter the articles based on the search query

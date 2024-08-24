@@ -6,7 +6,7 @@ class Article {
   String image;
   String date;
   String category;
-  NewsAgency publisherAgency;
+  NewsAgency? publisherAgency;
 
   Article({
     required this.id,
@@ -14,7 +14,7 @@ class Article {
     required this.image,
     required this.category,
     required this.date,
-    required this.publisherAgency,
+    this.publisherAgency,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) {

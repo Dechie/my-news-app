@@ -9,11 +9,14 @@ import '../../shared/app_colors.dart';
 // gesture detectors with container decoration in
 // all the custom buttons.
 class GreyButton extends StatelessWidget {
+  /// this button is used in different places
+  /// in [UserProfileView] page, [PublisherProfile] page and [HomeView] page.
   final void Function() onPress;
 
   final double width;
   final double height;
   final String text;
+  final bool darkerButton;
 
   const GreyButton({
     super.key,
@@ -21,6 +24,7 @@ class GreyButton extends StatelessWidget {
     required this.width,
     required this.height,
     required this.text,
+    this.darkerButton = false,
   });
 
   @override
@@ -33,7 +37,8 @@ class GreyButton extends StatelessWidget {
           vertical: 9,
         ),
         decoration: BoxDecoration(
-          color: darkColor2.withOpacity(0.08),
+          /// dark color with 8 % opacity
+          color: darkerButton ? darkColor2 : darkColor2.withOpacity(0.08),
           borderRadius: BorderRadius.circular(7),
         ),
         child: Center(
@@ -41,7 +46,7 @@ class GreyButton extends StatelessWidget {
             text,
             textAlign: TextAlign.center,
             style: GoogleFonts.roboto(
-              color: darkColor,
+              color: darkerButton ? Colors.white : darkColor,
               fontWeight: FontWeight.w500,
               fontSize: 16,
             ),

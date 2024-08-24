@@ -1,77 +1,56 @@
+import 'package:flutter/foundation.dart';
+import 'package:my_news_app/core/models/news_agency.dart';
+
 import '../../core/models/article.dart';
-import '../../core/models/news_agency.dart';
+part 'd_data_static.dart';
+/// this class is required because
+/// the data is complex and it would have better
+/// been used with relational database, but
+/// for now we are just using this method to
+/// store data in-memory.
+///
+/// so we will create values manually and set them up
+///
 
-// since we don't use any actual api requests,
-// we will instead feed the ui with these dummy data values.
-// we will still mock the api requests though.
-List<NewsAgency> newsAgencies = [
-  NewsAgency(
-    id: 0,
-    sourceTitle: "BBC NEWS",
-    logo: "bbc-logo.png",
-    totalNews: 133,
-    followers: 1233,
-    following: 4,
-  ),
-  NewsAgency(
-    id: 1,
-    sourceTitle: "The NYT",
-    logo: "nyt-logo.png",
-    totalNews: 123,
-    followers: 4314,
-    following: 6,
-  ),
-  NewsAgency(
-    id: 2,
-    sourceTitle: "Forbes",
-    logo: "forbes-logo.png",
-    totalNews: 43143,
-    followers: 1341,
-    following: 14314,
-  ),
-  NewsAgency(
-    id: 3,
-    sourceTitle: "ESPN",
-    logo: "espn-logo.png",
-    totalNews: 43143,
-    followers: 1341,
-    following: 14314,
-  ),
-];
-List<Article> recommendedArticles = [
-  Article(
-    id: 2,
-    title: "Tech Startup Secures \$50 Million Funding for Expansion",
-    image: "recommended_img1.jpg",
-    category: "Business",
-    date: "Jun 11, 2023",
-    publisherAgency: newsAgencies[2],
-  ),
-  Article(
-    id: 3,
-    title: "Star Athlete Breaks World Record in Olympic Event",
-    date: "Jun 10, 2023",
-    category: "Sports",
-    image: "recommended_img2.jpg",
-    publisherAgency: newsAgencies[3],
-  ),
-];
 
-List<Article> trendingArticles = [
-  Article(
-    id: 0,
-    title: "Global Summit on Climate Change: Historic Agreement Reached",
-    image: "trending_img1.jpg",
-    category: "Environment",
-    date: "Jun 9, 2023",
-    publisherAgency: newsAgencies[0],
-  ),
-  Article(
-    id: 1,
-    title: "Tech Giant Unveils Revolutionary AI-powered Device",
-    image: "trending_img2.jpg",
-    category: "Technology",
-    date: "Jun 9, 2023",
-    publisherAgency: newsAgencies[1],
-  ),
-];
+class DummyData {
+  List<Article> trendingArticles = [];
+  List<Article> recommendedArticles = [];
+  List<NewsAgency> newsAgencies = [];
+  DummyData() {
+    initialize();
+    setup();
+  }
+  initialize() {
+    // setup the published articles of the
+    // news agencies
+    bbc.articlesPublished = [];
+    espn.articlesPublished = [recom2];
+    forbes.articlesPublished = [recom1];
+    nyt.articlesPublished = [tr2];
+
+    // setup the news agencies of the articles
+    recom1.publisherAgency = forbes;
+    recom2.publisherAgency = espn;
+    tr1.publisherAgency = bbc;
+    tr2.publisherAgency = nyt;
+  }
+
+  void setup() {
+    newsAgencies = [
+      bbc,
+      nyt,
+      forbes,
+      espn,
+    ];
+
+    trendingArticles = [
+      tr1,
+      tr2,
+    ];
+    recommendedArticles = [
+      recom1,
+      recom2,
+    ];
+  }
+}

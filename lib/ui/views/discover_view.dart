@@ -10,6 +10,7 @@ import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/rounded_rect_image.dart';
 
 import '../shared/app_colors.dart';
+import '../shared/text_styles.dart';
 import '../widgets/buttons/grey_button.dart';
 import '../widgets/cards/news_card_two.dart';
 import '../widgets/search_bar.dart';
@@ -23,7 +24,7 @@ class DiscoverView extends StatefulWidget {
 
 class _DiscoverViewState extends State<DiscoverView> {
   TextEditingController searchCtrl = TextEditingController();
-
+  DummyData data = DummyData();
   List<String> newsTypes = [
     "All",
     "Recommended",
@@ -42,9 +43,10 @@ class _DiscoverViewState extends State<DiscoverView> {
     // to given screen size, and multiply every thing with that scale.
     var widthScale = size.width / 428;
     var heightScale = size.height / 926;
+    // TODO: implement provider
     List<Article> allArticles = [
-      ...trendingArticles,
-      ...recommendedArticles,
+      ...data.trendingArticles,
+      ...data.recommendedArticles,
     ];
 
     return Scaffold(
@@ -68,11 +70,8 @@ class _DiscoverViewState extends State<DiscoverView> {
                 ),
                 Text(
                   "Uncover a world of captivating stories and stay informed",
-                  style: GoogleFonts.sourceSans3(
-                    fontSize: 18 * widthScale,
-                    fontWeight: FontWeight.w400,
-                    color: commonGreyColor,
-                  ),
+                  // this method comes from text_styles file
+                  style: sourceSansW400A(widthScale),
                 ),
                 UIHelper.customVerticalSpace(14 * heightScale),
                 CustomSearchBar(
@@ -90,19 +89,11 @@ class _DiscoverViewState extends State<DiscoverView> {
                       children: [
                         Text(
                           "Publishers",
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20 * heightScale,
-                            color: darkColor,
-                          ),
+                          style: robotoW500(heightScale),
                         ),
                         Text(
                           "See all",
-                          style: GoogleFonts.sourceSans3(
-                            fontSize: 16 * widthScale,
-                            fontWeight: FontWeight.w400,
-                            color: commonGreyColor,
-                          ),
+                          style: sourceSansW400B(widthScale),
                         ),
                       ],
                     ),
@@ -114,7 +105,7 @@ class _DiscoverViewState extends State<DiscoverView> {
                   width: double.infinity,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
-                    itemCount: newsAgencies.length,
+                    itemCount: data.newsAgencies.length,
                     itemBuilder: (context, index) => SizedBox(
                       height: 167 * heightScale,
                       width: 147 * widthScale,
@@ -124,17 +115,16 @@ class _DiscoverViewState extends State<DiscoverView> {
                             width: 60 * heightScale,
                             height: 60 * heightScale,
                             borderRadius: 6,
+                            // TODO: implement provider
                             imagePath:
-                                "assets/logos/${newsAgencies[index].logo}",
+                                "assets/logos/${data.newsAgencies[index].logo}",
                           ),
                           UIHelper.customVerticalSpace(8 * heightScale),
                           Text(
-                            newsAgencies[index].sourceTitle,
-                            style: GoogleFonts.sourceSans3(
-                              color: darkColor,
-                              fontSize: 18 * heightScale,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            // TODO: IMPLEMENT PROVIDER
+                            data.newsAgencies[index].sourceTitle,
+                            // this method comes from text_styles file
+                            style: sourceSansW600A(heightScale),
                           ),
                           UIHelper.customVerticalSpace(16 * heightScale),
                           GreyButton(
@@ -153,11 +143,9 @@ class _DiscoverViewState extends State<DiscoverView> {
                 UIHelper.getVerticalSpaceLarge(size),
                 Text(
                   "News",
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20 * heightScale,
-                    color: darkColor,
-                  ),
+
+                  /// this method comes from the text_styles file
+                  style: robotoW500(heightScale),
                 ),
                 UIHelper.customVerticalSpace(16 * heightScale),
                 SizedBox(
@@ -178,7 +166,7 @@ class _DiscoverViewState extends State<DiscoverView> {
                           style: GoogleFonts.sourceSans3(
                             color: newsTypesIndex == index
                                 ? lighterBlue
-                                : const Color(0xff999999),
+                                : commonGreyColor,
                           ),
                         ),
                       );
@@ -201,7 +189,8 @@ class _DiscoverViewState extends State<DiscoverView> {
                   ),
 
                 /// if current value  (of listview tabs just above)is recommended ones, return this one.
-                ...recommendedArticles.map(
+                // TODO: Implement provider
+                ...data.recommendedArticles.map(
                   (article) {
                     return NewsCardTwo(
                       widthScale: widthScale,

@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
+import 'package:my_news_app/ui/shared/text_styles.dart';
 import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/buttons/blue_large_button.dart';
 import 'package:my_news_app/ui/widgets/buttons/outlined_button.dart';
@@ -84,11 +85,7 @@ class LoginView extends StatelessWidget {
                         children: [
                           Text(
                             "Forgot Password?",
-                            style: GoogleFonts.sourceSans3(
-                              color: commonGreyColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: sourceSansW400B(widthScale),
                           ),
                         ],
                       ),
@@ -123,11 +120,7 @@ class LoginView extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Text(
                         "Or",
-                        style: GoogleFonts.sourceSans3(
-                          color: commonGreyColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: sourceSansW400B(widthScale),
                       ),
                     ),
                     Expanded(
@@ -172,11 +165,7 @@ class LoginView extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: "Don't have an account? ",
-                            style: GoogleFonts.sourceSans3(
-                              color: commonGreyColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                            ),
+                            style: sourceSansW400B(16),
                           ),
                           TextSpan(
                               text: "Sign Up",

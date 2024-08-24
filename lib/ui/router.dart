@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_news_app/ui/views/discover_view.dart';
 import 'package:my_news_app/ui/views/onboarding_view.dart';
-import 'package:my_news_app/ui/views/single_publisher.dart';
+import 'package:my_news_app/ui/views/publisher_profile_view.dart';
 import 'package:my_news_app/ui/views/splash_view.dart';
 import 'package:my_news_app/ui/views/user_profile_view.dart';
 
@@ -29,7 +29,7 @@ class RouterUtil {
         return MaterialPageRoute(builder: (_) => const DiscoverView());
       case RoutePaths.singlePublisher:
         final publisher =
-            settings.arguments as NewsAgency?; // Cast arguments to NewsAgency
+            settings.arguments as NewsAgency; // Cast arguments to NewsAgency
         return MaterialPageRoute(
           builder: (_) => SinglePublisherView(
             publisher: publisher,

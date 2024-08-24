@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_news_app/ui/shared/text_styles.dart';
 
 import '../shared/app_colors.dart';
 
@@ -23,20 +24,20 @@ class TitledWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: GoogleFonts.roboto(
-              fontWeight: FontWeight.w600,
-              fontSize: 26 * heightScale,
-              color: darkColor,
+          Expanded(
+            child: Text(
+              title,
+              style: GoogleFonts.roboto(
+                fontWeight: FontWeight.w600,
+                fontSize: 24 * heightScale,
+                color: darkColor,
+              ),
             ),
           ),
-          Text(
-            subtitle,
-            style: GoogleFonts.sourceSans3(
-              fontSize: 18 * heightScale,
-              fontWeight: FontWeight.w400,
-              color: commonGreyColor,
+          Expanded(
+            child: Text(
+              subtitle,
+              style: sourceSansW400A(heightScale),
             ),
           ),
         ],

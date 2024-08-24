@@ -77,7 +77,7 @@ class NewsCardTwo extends StatelessWidget {
                           borderRadius: 4,
                           // the image of the publisher company
                           imagePath:
-                              "assets/logos/${article.publisherAgency.logo}",
+                              "assets/logos/${article.publisherAgency?.logo ?? "bbc-logo.png"}",
                         ),
                       ),
                       UIHelper.customHorizontalSpace(20 * widthScale),
@@ -100,7 +100,8 @@ class NewsCardTwo extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     Text(
-                                      article.publisherAgency.sourceTitle,
+                                      article.publisherAgency?.sourceTitle ??
+                                          "",
                                       style: subHeaderStyle.copyWith(
                                         fontSize: 15 * heightScale,
                                       ),
@@ -124,12 +125,12 @@ class NewsCardTwo extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                     GreyButton(
+                      GreyButton(
                         onPress: () {},
                         width: 91 * widthScale,
                         height: 37 * heightScale,
                         text: "Follow",
-                      ), 
+                      ),
                       UIHelper.customHorizontalSpace(14 * widthScale),
                       // 3 dots button on the top right
                       GestureDetector(

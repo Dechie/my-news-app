@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:my_news_app/ui/shared/app_colors.dart';
+import 'package:my_news_app/ui/shared/text_styles.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
 import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/cards/news_card_one.dart';
@@ -8,7 +7,7 @@ import 'package:my_news_app/ui/widgets/cards/news_card_two.dart';
 import 'package:my_news_app/ui/widgets/titled_widget.dart';
 
 import '../shared/dummy_data.dart';
-import '../widgets/buttons/square_icon_button.dart';
+import '../widgets/buttons/square_svg_button.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -18,6 +17,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  DummyData data = DummyData();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -54,13 +54,13 @@ class _HomeViewState extends State<HomeView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SquareIconButton(
+                        SquareSVGButton(
                           widthScale: widthScale,
                           heightScale: heightScale,
                           iconPath: "menu.svg",
                           onPress: () {},
                         ),
-                        SquareIconButton(
+                        SquareSVGButton(
                           widthScale: widthScale,
                           heightScale: heightScale,
                           iconPath: "notification_bell.svg",
@@ -79,22 +79,7 @@ class _HomeViewState extends State<HomeView> {
                   title: "Welcome Back, Tyler!",
                   subtitle: "Discover a world of news that matters to you",
                 ),
-                // Text(
-                //   "Welcome Back, Tyler!",
-                //   style: GoogleFonts.roboto(
-                //     fontWeight: FontWeight.w600,
-                //     fontSize: 26 * widthScale,
-                //     color: darkColor,
-                //   ),
-                // ),
-                // Text(
-                //   "Discover a world of news that matters to you",
-                //   style: GoogleFonts.sourceSans3(
-                //     fontSize: 18 * widthScale,
-                //     fontWeight: FontWeight.w400,
-                //     color: commonGreyColor,
-                //   ),
-                // ),
+
                 UIHelper.customVerticalSpace(24 * heightScale),
                 Padding(
                   padding: const EdgeInsets.only(right: 18.0),
@@ -106,19 +91,13 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         Text(
                           "Trending News",
-                          style: GoogleFonts.roboto(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20 * heightScale,
-                            color: darkColor,
-                          ),
+
+                          /// this method comes from the text_styles file
+                          style: robotoW500(heightScale),
                         ),
                         Text(
                           "See all",
-                          style: GoogleFonts.sourceSans3(
-                            fontSize: 16 * widthScale,
-                            fontWeight: FontWeight.w400,
-                            color: commonGreyColor,
-                          ),
+                          style: sourceSansW400B(widthScale),
                         ),
                       ],
                     ),
@@ -130,12 +109,13 @@ class _HomeViewState extends State<HomeView> {
                   width: double.infinity,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 2,
+                    itemCount: data.trendingArticles.length,
                     itemBuilder: (context, index) {
                       return NewsCardOne(
                         widthScale: widthScale,
                         heightScale: heightScale,
-                        article: trendingArticles[index],
+                        // TODO: implement provider
+                        article: data.trendingArticles[index],
                       );
                     },
                     separatorBuilder: (context, index) =>
@@ -145,19 +125,17 @@ class _HomeViewState extends State<HomeView> {
                 UIHelper.customVerticalSpace(30 * heightScale),
                 Text(
                   "Recommendation",
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20 * widthScale,
-                    color: darkColor,
-                  ),
+                  // this method comes from the text_styles file
+                  style: robotoW500(widthScale),
                 ),
                 UIHelper.customVerticalSpace(16 * heightScale),
                 // we use spread operator, to list the recommended articles
                 // from their data list into this listview
-                ...recommendedArticles.map(
+                // TODO: implement provider
+                ...data.recommendedArticles.map(
                   (article) {
                     print(
-                        "title: ${article.title}, id: ${article.id}, publisher: ${article.publisherAgency.sourceTitle}");
+                        "title: ${article.title}, id: ${article.id}, publisher: ${article.publisherAgency?.sourceTitle ?? "eror source title"}");
                     return NewsCardTwo(
                       widthScale: widthScale,
                       heightScale: heightScale,
