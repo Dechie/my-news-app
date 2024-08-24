@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
 import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/cards/news_card_one.dart';
 import 'package:my_news_app/ui/widgets/cards/news_card_two.dart';
+import 'package:my_news_app/ui/widgets/titled_widget.dart';
 
 import '../shared/dummy_data.dart';
 import '../widgets/buttons/square_icon_button.dart';
@@ -57,13 +57,13 @@ class _HomeViewState extends State<HomeView> {
                         SquareIconButton(
                           widthScale: widthScale,
                           heightScale: heightScale,
-                          iconData: FontAwesomeIcons.linesLeaning,
+                          iconPath: "menu.svg",
                           onPress: () {},
                         ),
                         SquareIconButton(
                           widthScale: widthScale,
                           heightScale: heightScale,
-                          iconData: FontAwesomeIcons.bell,
+                          iconPath: "notification_bell.svg",
                           onPress: () {},
                         )
                       ],
@@ -71,22 +71,30 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 UIHelper.customVerticalSpace(24 * heightScale),
-                Text(
-                  "Welcome Back, Tyler!",
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26 * widthScale,
-                    color: darkColor,
-                  ),
+                TitledWidget(
+                  width: 329 * widthScale,
+                  height: 63 * heightScale,
+                  widthScale: widthScale,
+                  heightScale: heightScale,
+                  title: "Welcome Back, Tyler!",
+                  subtitle: "Discover a world of news that matters to you",
                 ),
-                Text(
-                  "Discover a world of news that matters to you",
-                  style: GoogleFonts.sourceSans3(
-                    fontSize: 18 * widthScale,
-                    fontWeight: FontWeight.w400,
-                    color: commonGreyColor,
-                  ),
-                ),
+                // Text(
+                //   "Welcome Back, Tyler!",
+                //   style: GoogleFonts.roboto(
+                //     fontWeight: FontWeight.w600,
+                //     fontSize: 26 * widthScale,
+                //     color: darkColor,
+                //   ),
+                // ),
+                // Text(
+                //   "Discover a world of news that matters to you",
+                //   style: GoogleFonts.sourceSans3(
+                //     fontSize: 18 * widthScale,
+                //     fontWeight: FontWeight.w400,
+                //     color: commonGreyColor,
+                //   ),
+                // ),
                 UIHelper.customVerticalSpace(24 * heightScale),
                 Padding(
                   padding: const EdgeInsets.only(right: 18.0),

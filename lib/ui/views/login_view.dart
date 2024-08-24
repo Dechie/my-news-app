@@ -7,8 +7,8 @@ import 'package:my_news_app/ui/widgets/buttons/blue_large_button.dart';
 import 'package:my_news_app/ui/widgets/buttons/outlined_button.dart';
 import 'package:my_news_app/ui/widgets/login_text_field.dart';
 
-import '../shared/text_styles.dart';
 import '../shared/ui_helpers.dart';
+import '../widgets/titled_widget.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -16,6 +16,12 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    // since the figma design dimensions turn out to be
+    // larger than usual mobile phone dimensions, we will scale it
+    // to given screen size, and multiply every thing with that scale.
+
+    var widthScale = size.width / 428;
+    var heightScale = size.height / 926;
     return Scaffold(
       bottomNavigationBar: const BottomNavyBar(
         selectedIndex: 1,
@@ -28,24 +34,33 @@ class LoginView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Sign In",
-                textAlign: TextAlign.start,
-                style: GoogleFonts.roboto(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w600,
-                  color: darkColor,
-                ),
+              TitledWidget(
+                width: 329 * widthScale,
+                height: 88 * heightScale,
+                widthScale: widthScale,
+                heightScale: heightScale,
+                title: "Sign In",
+                subtitle:
+                    "Stay informed effortlessly. Sign in and explore a world of news",
               ),
-              UIHelper.customVerticalSpace(6),
-              Text(
-                textAlign: TextAlign.start,
-                "Stay informed effortlessly. Sign in and explore a world of news",
-                style: subHeaderStyle,
-              ),
+              // Text(
+              //   "Sign In",
+              //   textAlign: TextAlign.start,
+              //   style: GoogleFonts.roboto(
+              //     fontSize: 26,
+              //     fontWeight: FontWeight.w600,
+              //     color: darkColor,
+              //   ),
+              // ),
+              // UIHelper.customVerticalSpace(6),
+              // Text(
+              //   textAlign: TextAlign.start,
+              //   "Stay informed effortlessly. Sign in and explore a world of news",
+              //   style: subHeaderStyle,
+              // ),
               UIHelper.getVerticalSpaceMedium(size),
               SizedBox(
-                height: size.height * 0.21,
+                height: size.height * 0.215,
                 width: double.infinity,
                 child: Form(
                   child: Column(

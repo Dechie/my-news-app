@@ -57,6 +57,6 @@ class UIHelper {
       );
 
   static Widget getVerticalSpaceMedium(Size size) => SizedBox(
-        height: size.height * 0.039,
+        height: size.height * 0.039 - 2,
       );
 }

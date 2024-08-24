@@ -124,12 +124,12 @@ class NewsCardTwo extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      GreyButton(
+                     GreyButton(
                         onPress: () {},
                         width: 91 * widthScale,
                         height: 37 * heightScale,
                         text: "Follow",
-                      ),
+                      ), 
                       UIHelper.customHorizontalSpace(14 * widthScale),
                       // 3 dots button on the top right
                       GestureDetector(

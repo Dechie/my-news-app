@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 
 class SquareIconButton extends StatelessWidget {
-  final IconData iconData;
-
   final void Function() onPress;
   final double widthScale, heightScale;
+  final String iconPath;
+
   const SquareIconButton({
     super.key,
     required this.widthScale,
     required this.heightScale,
-    required this.iconData,
     required this.onPress,
+    required this.iconPath,
   });
 
   @override
@@ -32,9 +33,10 @@ class SquareIconButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(14.0),
             child: Center(
-              child: Icon(
-                iconData,
-                size: 24 * heightScale,
+              child: SvgPicture.asset(
+                "assets/svgs/$iconPath",
+                width: 24 * heightScale,
+                height: 24 * heightScale,
               ),
             ),
           ),

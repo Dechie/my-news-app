@@ -9,5 +9,6 @@ class RoutePaths {
   static const String login = 'login';
   static const String home = 'home';
   static const String singlePublisher = 'singlePublisher';
+  static const String userProfile = 'userProfile';
   static const String discover = "discover";
 }

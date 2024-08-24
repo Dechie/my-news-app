@@ -53,11 +53,11 @@ class LoginTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           fillColor: inputDecorationFill,
-          prefix: Icon(
+          prefixIcon: Icon(
             prefixIcon,
             color: commonGreyColor,
           ),
-          suffix: suffixIcon != null
+          suffixIcon: suffixIcon != null
               ? Icon(
                   suffixIcon,
                   color: commonGreyColor,

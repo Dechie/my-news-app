@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_news_app/core/models/news_agency.dart';
 
 import '../widgets/buttons/square_icon_button.dart';
@@ -41,13 +40,13 @@ class SinglePublisherView extends StatelessWidget {
                         SquareIconButton(
                           widthScale: widthScale,
                           heightScale: heightScale,
-                          iconData: FontAwesomeIcons.arrowLeft,
+                          iconPath: "arrow_left.svg",
                           onPress: () {},
                         ),
                         SquareIconButton(
                           widthScale: widthScale,
                           heightScale: heightScale,
-                          iconData: FontAwesomeIcons.line,
+                          iconPath: "menu.svg",
                           onPress: () {},
                         ),
                       ],

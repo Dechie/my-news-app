@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 
 import '../../core/constants/app_contstants.dart';
+import '../../core/models/user.dart';
 
 /// custom implementation of navbar with customized themes.
 /// it involves icons and texts, where texts only appear for the
@@ -80,7 +81,8 @@ class _BottomNavyBarState extends State<BottomNavyBar> {
         ),
       ),
       NavigationItem(
-        route: RoutePaths.splash,
+        argument: User.initial(),
+        route: RoutePaths.userProfile,
         svgPath: selectedIndex == 3
             ? "profile/profile_active.svg"
             : "profile/profile_inactive.svg",
@@ -146,7 +148,8 @@ class _BottomNavyBarState extends State<BottomNavyBar> {
                   print('you tapped this');
                   Navigator.of(context).pushNamed(
                     item.route,
-                    arguments: item.route == "argpath" ? {item.arg} : null,
+                    arguments:
+                        item.route == "userProfile" ? item.argument : null,
                   );
                   setState(() {
                     selectedIndex = itemIndex;
