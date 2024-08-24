@@ -21,6 +21,8 @@ class SinglePublisherView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("${publisher.sourceTitle}'s articles:");
+    print(publisher.articlesPublished.toString());
     var size = MediaQuery.of(context).size;
     // since the figma design dimensions turn out to be
     // larger than usual mobile phone dimensions, we will scale it
@@ -160,7 +162,7 @@ class SinglePublisherView extends StatelessWidget {
 
                 /// if publisher news agency has articles, list its articles with the article
                 /// cards using spread operator in this listview
-                if (publisher.articlesPublished.isEmpty)
+                if (publisher.articlesPublished.isNotEmpty)
                   ...publisher.articlesPublished.map(
                     (article) {
                       return NewsCardTwo(

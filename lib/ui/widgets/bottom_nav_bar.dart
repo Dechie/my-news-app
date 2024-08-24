@@ -69,7 +69,7 @@ class _BottomNavyBarState extends State<BottomNavyBar> {
         ),
       ),
       NavigationItem(
-        route: RoutePaths.onboarding,
+        route: RoutePaths.bookmarks,
         svgPath: selectedIndex == 2
             ? "bookmarks/bookmarks_active.svg"
             : "bookmarks/bookmarks_inactive.svg",

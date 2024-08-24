@@ -50,12 +50,24 @@ class MainProfileDetails extends StatelessWidget {
       child: Row(
         children: [
           /// this is the image of the user/
-          RoundedRectImage(
-            width: 116 * heightScale,
-            height: 116 * heightScale,
-            borderRadius: 10,
-            imagePath: mapEnumToPath[profileType]!,
-          ),
+          if (profileType == ProfileType.newsAgency)
+            Hero(
+              tag: newsAgency?.id ?? -1,
+              child: RoundedRectImage(
+                width: 116 * heightScale,
+                height: 116 * heightScale,
+                borderRadius: 10,
+                imagePath: mapEnumToPath[profileType]!,
+              ),
+            )
+          else if (profileType == ProfileType.user)
+            RoundedRectImage(
+              width: 116 * heightScale,
+              height: 116 * heightScale,
+              borderRadius: 10,
+              imagePath: mapEnumToPath[profileType]!,
+            ),
+
           UIHelper.customHorizontalSpace(28 * widthScale),
           // this is the 2nd group, which shows the details
           SizedBox(
@@ -78,7 +90,6 @@ class MainProfileDetails extends StatelessWidget {
                   height: 41 * heightScale,
                   text: "Create New",
                   darkerButton: profileType == ProfileType.newsAgency,
-                  
                 )
               ],
             ),

@@ -1,8 +1,11 @@
-// You can also just let this float around in the file without encapsulating
-// in a class. Then you'll have to make sure that system wide you don't have
-// duplicate variable names.
+import 'package:flutter/material.dart';
+
 const double commonBorderRadius = 13.7;
 
+/// this file states the names of the routes,
+/// so that we can use named navigators using these
+/// then, [Router] class could use these to generate the
+/// actual [MaterialPageRoute] of the screens.
 class RoutePaths {
   static const String splash = 'splash';
   static const String onboarding = 'onboarding';
@@ -11,4 +14,5 @@ class RoutePaths {
   static const String singlePublisher = 'singlePublisher';
   static const String userProfile = 'userProfile';
   static const String discover = "discover";
+  static const String bookmarks = "bookmarks";
 }

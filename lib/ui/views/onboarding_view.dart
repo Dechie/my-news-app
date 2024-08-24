@@ -35,9 +35,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     // each component in this screen have dimensions in the
     // form of  i.e. different ratios of size.width and size.height.
     return Scaffold(
-      bottomNavigationBar: const BottomNavyBar(
-        selectedIndex: 2,
-      ),
+      
       backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

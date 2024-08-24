@@ -13,9 +13,7 @@ class SplashView extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: primaryBlue,
-      bottomNavigationBar: const BottomNavyBar(
-        selectedIndex: 3,
-      ),
+      
       body: Center(
         child: SizedBox(
             width: size.width * 0.2,

@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 
 class LoginTextField extends StatelessWidget {
   final double width, height;
-  final IconData prefixIcon;
-  final IconData? suffixIcon;
+  final String prefixSvgPath;
+  final String? suffixSvgPath;
+  final prefixSvgHeight, suffixSvgHeight;
   final String hintText;
 
   const LoginTextField({
     super.key,
     required this.width,
     required this.height,
-    required this.prefixIcon,
+    required this.prefixSvgPath,
     required this.hintText,
-    this.suffixIcon,
+    this.suffixSvgPath,
+    required this.prefixSvgHeight,
+    required this.suffixSvgHeight,
   });
 
   @override
@@ -38,6 +42,14 @@ class LoginTextField extends StatelessWidget {
               width: 1.0,
             ),
           ),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: SvgPicture.asset(
+              "assets/svgs/$prefixSvgPath",
+              height: prefixSvgHeight,
+              width: prefixSvgHeight,
+            ),
+          ),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
               color: inputDecorationFill,
@@ -53,14 +65,14 @@ class LoginTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           fillColor: inputDecorationFill,
-          prefixIcon: Icon(
-            prefixIcon,
-            color: commonGreyColor,
-          ),
-          suffixIcon: suffixIcon != null
-              ? Icon(
-                  suffixIcon,
-                  color: commonGreyColor,
+          suffixIcon: suffixSvgPath != null
+              ? Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SvgPicture.asset(
+                    "assets/svgs/$suffixSvgPath",
+                    height: suffixSvgHeight,
+                    width: suffixSvgHeight,
+                  ),
                 )
               : null,
         ),

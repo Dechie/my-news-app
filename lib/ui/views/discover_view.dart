@@ -3,6 +3,7 @@
 // to given screen size, and multiply every thing with that scale.
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_news_app/core/constants/app_contstants.dart';
 import 'package:my_news_app/core/models/article.dart';
 import 'package:my_news_app/ui/shared/dummy_data.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
@@ -106,34 +107,45 @@ class _DiscoverViewState extends State<DiscoverView> {
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: data.newsAgencies.length,
-                    itemBuilder: (context, index) => SizedBox(
-                      height: 167 * heightScale,
-                      width: 147 * widthScale,
-                      child: Column(
-                        children: [
-                          RoundedRectImage(
-                            width: 60 * heightScale,
-                            height: 60 * heightScale,
-                            borderRadius: 6,
-                            // TODO: implement provider
-                            imagePath:
-                                "assets/logos/${data.newsAgencies[index].logo}",
-                          ),
-                          UIHelper.customVerticalSpace(8 * heightScale),
-                          Text(
-                            // TODO: IMPLEMENT PROVIDER
-                            data.newsAgencies[index].sourceTitle,
-                            // this method comes from text_styles file
-                            style: sourceSansW600A(heightScale),
-                          ),
-                          UIHelper.customVerticalSpace(16 * heightScale),
-                          GreyButton(
-                            onPress: () {},
-                            width: 115 * widthScale,
-                            height: 34 * heightScale,
-                            text: "Follow",
-                          ),
-                        ],
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          RoutePaths.singlePublisher,
+                          arguments: data.newsAgencies[index],
+                        );
+                      },
+                      child: SizedBox(
+                        height: 167 * heightScale,
+                        width: 147 * widthScale,
+                        child: Column(
+                          children: [
+                            Hero(
+                              tag: data.newsAgencies[index].id,
+                              child: RoundedRectImage(
+                                width: 60 * heightScale,
+                                height: 60 * heightScale,
+                                borderRadius: 6,
+                                // TODO: implement provider
+                                imagePath:
+                                    "assets/logos/${data.newsAgencies[index].logo}",
+                              ),
+                            ),
+                            UIHelper.customVerticalSpace(8 * heightScale),
+                            Text(
+                              // TODO: IMPLEMENT PROVIDER
+                              data.newsAgencies[index].sourceTitle,
+                              // this method comes from text_styles file
+                              style: sourceSansW600A(heightScale),
+                            ),
+                            UIHelper.customVerticalSpace(16 * heightScale),
+                            GreyButton(
+                              onPress: () {},
+                              width: 115 * widthScale,
+                              height: 34 * heightScale,
+                              text: "Follow",
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     separatorBuilder: (context, index) =>

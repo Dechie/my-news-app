@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:my_news_app/core/models/news_agency.dart';
 
 import '../../core/models/article.dart';
-part 'd_data_static.dart';
+
 /// this class is required because
 /// the data is complex and it would have better
 /// been used with relational database, but
@@ -11,7 +10,7 @@ part 'd_data_static.dart';
 ///
 /// so we will create values manually and set them up
 ///
-
+part 'd_data_static.dart';
 
 class DummyData {
   List<Article> trendingArticles = [];

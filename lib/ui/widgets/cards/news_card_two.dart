@@ -69,15 +69,18 @@ class NewsCardTwo extends StatelessWidget {
                             arguments: article.publisherAgency,
                           );
                         },
-                        child: RoundedRectImage(
-                          // multiply by same scale value to preserve
-                          // square shape
-                          width: 36 * heightScale,
-                          height: 36 * heightScale,
-                          borderRadius: 4,
-                          // the image of the publisher company
-                          imagePath:
-                              "assets/logos/${article.publisherAgency?.logo ?? "bbc-logo.png"}",
+                        child: Hero(
+                          tag: article.publisherAgency?.id ?? -1,
+                          child: RoundedRectImage(
+                            // multiply by same scale value to preserve
+                            // square shape
+                            width: 36 * heightScale,
+                            height: 36 * heightScale,
+                            borderRadius: 4,
+                            // the image of the publisher company
+                            imagePath:
+                                "assets/logos/${article.publisherAgency?.logo ?? "bbc-logo.png"}",
+                          ),
                         ),
                       ),
                       UIHelper.customHorizontalSpace(20 * widthScale),

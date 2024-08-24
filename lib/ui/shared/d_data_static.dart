@@ -22,11 +22,11 @@ var bbc = NewsAgency(
 );
 var espn = NewsAgency(
   id: 2,
-  sourceTitle: "Forbes",
-  sourceUsername: "forbesnews",
+  sourceTitle: "ESPN",
+  sourceUsername: "espn",
   description:
       "Empowering your business journey with expert insights and influential perspectives.",
-  logo: "forbes-logo.png",
+  logo: "espn-logo.png",
   totalNews: 43143,
   followers: 1341,
   following: 14314,

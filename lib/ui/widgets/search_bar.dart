@@ -13,10 +13,12 @@ import '../shared/dummy_data.dart';
 /// search functionalities
 class CustomSearchBar extends StatelessWidget {
   final double widthScale, heightScale;
-  const CustomSearchBar({
+  String? customLabel;
+  CustomSearchBar({
     super.key,
     required this.widthScale,
     required this.heightScale,
+    this.customLabel,
   });
 
   @override
@@ -68,7 +70,7 @@ class CustomSearchBar extends StatelessWidget {
       builder: (context, controller) {
         return SearchBar(
           controller: controller,
-          hintText: "Search \"News\"",
+          hintText: customLabel ?? "Search \"News\"",
           elevation: const WidgetStatePropertyAll<double>(0),
           backgroundColor: WidgetStatePropertyAll<Color>(
             const Color(0xffd9eff9).withOpacity(0.3),

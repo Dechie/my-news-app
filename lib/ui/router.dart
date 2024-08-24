@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_news_app/ui/views/bookmark_view.dart';
 import 'package:my_news_app/ui/views/discover_view.dart';
 import 'package:my_news_app/ui/views/onboarding_view.dart';
 import 'package:my_news_app/ui/views/publisher_profile_view.dart';
@@ -11,7 +12,7 @@ import '../core/models/user.dart';
 import 'views/home_view.dart';
 import 'views/login_view.dart';
 
-/// this page generates routes for the views,
+/// this page generates [MaterialPageRoute] for the views,
 /// in a way that's suitable for named navigator
 /// that is the preferred way of navigation
 class RouterUtil {
@@ -35,6 +36,8 @@ class RouterUtil {
             publisher: publisher,
           ),
         );
+      case RoutePaths.bookmarks:
+        return MaterialPageRoute(builder: (_) => const BookmarkView());
       case RoutePaths.userProfile:
         final user = settings.arguments as User;
         return MaterialPageRoute(

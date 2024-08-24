@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 import 'package:my_news_app/ui/shared/text_styles.dart';
-import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/buttons/blue_large_button.dart';
 import 'package:my_news_app/ui/widgets/buttons/outlined_button.dart';
 import 'package:my_news_app/ui/widgets/login_text_field.dart';
@@ -24,9 +23,6 @@ class LoginView extends StatelessWidget {
     var widthScale = size.width / 428;
     var heightScale = size.height / 926;
     return Scaffold(
-      bottomNavigationBar: const BottomNavyBar(
-        selectedIndex: 1,
-      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -44,42 +40,32 @@ class LoginView extends StatelessWidget {
                 subtitle:
                     "Stay informed effortlessly. Sign in and explore a world of news",
               ),
-              // Text(
-              //   "Sign In",
-              //   textAlign: TextAlign.start,
-              //   style: GoogleFonts.roboto(
-              //     fontSize: 26,
-              //     fontWeight: FontWeight.w600,
-              //     color: darkColor,
-              //   ),
-              // ),
-              // UIHelper.customVerticalSpace(6),
-              // Text(
-              //   textAlign: TextAlign.start,
-              //   "Stay informed effortlessly. Sign in and explore a world of news",
-              //   style: subHeaderStyle,
-              // ),
+
               UIHelper.getVerticalSpaceMedium(size),
               SizedBox(
-                height: size.height * 0.215,
+                height: 172 * heightScale,
                 width: double.infinity,
                 child: Form(
                   child: Column(
                     children: [
-                      const LoginTextField(
+                      LoginTextField(
                         hintText: "Email",
-                        prefixIcon: Icons.email,
+                        prefixSvgPath: "email.svg",
                         width: double.infinity,
-                        height: 64,
+                        height: 64 * heightScale,
+                        prefixSvgHeight: 20 * heightScale,
+                        suffixSvgHeight: 0,
                       ),
-                      const LoginTextField(
+                      LoginTextField(
                         hintText: "Password",
                         width: double.infinity,
-                        height: 64,
-                        prefixIcon: Icons.lock,
-                        suffixIcon: Icons.remove_red_eye,
+                        height: 64 * heightScale,
+                        prefixSvgHeight: 20 * heightScale,
+                        suffixSvgHeight: 22 * heightScale,
+                        prefixSvgPath: "lock.svg",
+                        suffixSvgPath: "eye.svg",
                       ),
-                      UIHelper.customVerticalSpace(6),
+                      UIHelper.customVerticalSpace(6 * heightScale),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -93,15 +79,15 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
               ),
-              UIHelper.verticalSpaceMedium,
+              UIHelper.customVerticalSpace(20 * heightScale),
               CommonButton(
                 onPress: () {},
-                width: size.width * 0.9,
-                height: 45,
+                width: 392 * widthScale,
+                height: 55 * heightScale,
               ),
-              UIHelper.verticalSpaceMedium,
+              UIHelper.customVerticalSpace(20 * heightScale),
               SizedBox(
-                height: 20,
+                height: 20 * heightScale,
                 child: Row(
                   children: [
                     Expanded(
@@ -125,7 +111,7 @@ class LoginView extends StatelessWidget {
                     ),
                     Expanded(
                       child: Container(
-                        height: 3,
+                        height: 2,
                         decoration: BoxDecoration(
                           color: lighterGrey,
                           border: Border.all(
@@ -138,27 +124,27 @@ class LoginView extends StatelessWidget {
                   ],
                 ),
               ),
-              UIHelper.customVerticalSpace(25),
+              UIHelper.customVerticalSpace(25 * heightScale),
               MyOutlinedButton(
                 imagePath: "google-logo.png",
                 text: "Sign in with Google",
                 onPress: () {},
-                width: size.width * 0.9,
-                height: 45,
+                width: 392 * widthScale,
+                height: 55 * heightScale,
               ),
               UIHelper.customVerticalSpace(12),
               MyOutlinedButton(
                 imagePath: "fb-logo.png",
                 text: "Sign in with Facebook",
                 onPress: () {},
-                width: size.width * 0.9,
-                height: 45,
+                width: 392 * widthScale,
+                height: 55 * heightScale,
               ),
-              const Spacer(),
+              //const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 18.0),
                 child: SizedBox(
-                  height: 20,
+                  height: 20 * heightScale,
                   child: Center(
                     child: RichText(
                       text: TextSpan(
@@ -168,14 +154,14 @@ class LoginView extends StatelessWidget {
                             style: sourceSansW400B(16),
                           ),
                           TextSpan(
-                              text: "Sign Up",
-                              style: GoogleFonts.sourceSans3(
-                                color: darkColor2,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {}),
+                            text: "Sign Up",
+                            style: GoogleFonts.sourceSans3(
+                              color: darkColor2,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                            recognizer: TapGestureRecognizer()..onTap = () {},
+                          ),
                         ],
                       ),
                     ),
