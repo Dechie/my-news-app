@@ -1,52 +1,49 @@
+class Api {
+  // static const endpoint = 'https://jsonplaceholder.typicode.com';
 
+  // var client = http.Client();
 
-/// The service responsible for networking requests
-// class Api {
-//   static const endpoint = 'https://jsonplaceholder.typicode.com';
+  // Future<List<Comment>> getCommentsForPost(int postId) async {
+  //   List<Comment> comments = <Comment>[];
 
-//   var client = http.Client();
+  //   // Get comments for post
+  //   var uri = Uri.parse('$endpoint/comments?postId=$postId');
+  //   var response = await client.get(uri);
 
-//   Future<List<Comment>> getCommentsForPost(int postId) async {
-//     List<Comment> comments = <Comment>[];
+  //   // Parse into List
+  //   var parsed = json.decode(response.body) as List<dynamic>;
 
-//     // Get comments for post
-//     var uri = Uri.parse('$endpoint/comments?postId=$postId');
-//     var response = await client.get(uri);
+  //   // Loop and convert each item to a Comment
+  //   for (var comment in parsed) {
+  //     comments.add(Comment.fromJson(comment));
+  //   }
 
-//     // Parse into List
-//     var parsed = json.decode(response.body) as List<dynamic>;
+  //   return comments;
+  // }
 
-//     // Loop and convert each item to a Comment
-//     for (var comment in parsed) {
-//       comments.add(Comment.fromJson(comment));
-//     }
+  // Future<List<Post>> getPostsForUser(int userId) async {
+  //   List<Post> posts = [];
+  //   // Get user posts for id
+  //   var uri = Uri.parse('$endpoint/posts?userId=$userId');
+  //   var response = await client.get(uri);
 
-//     return comments;
-//   }
+  //   // parse into List
+  //   var parsed = json.decode(response.body) as List<dynamic>;
 
-//   Future<List<Post>> getPostsForUser(int userId) async {
-//     List<Post> posts = [];
-//     // Get user posts for id
-//     var uri = Uri.parse('$endpoint/posts?userId=$userId');
-//     var response = await client.get(uri);
+  //   // loop and convert each item to Post
+  //   for (var post in parsed) {
+  //     posts.add(Post.fromJson(post));
+  //   }
 
-//     // parse into List
-//     var parsed = json.decode(response.body) as List<dynamic>;
+  //   return posts;
+  // }
 
-//     // loop and convert each item to Post
-//     for (var post in parsed) {
-//       posts.add(Post.fromJson(post));
-//     }
+  // Future<User> getUserProfile(int userId) async {
+  //   // Get user profile for id
+  //   var uri = Uri.parse('$endpoint/users/$userId');
+  //   var response = await client.get(uri);
 
-//     return posts;
-//   }
-
-//   Future<User> getUserProfile(int userId) async {
-//     // Get user profile for id
-//     var uri = Uri.parse('$endpoint/users/$userId');
-//     var response = await client.get(uri);
-
-//     // Convert and return
-//     return User.fromJson(json.decode(response.body));
-//   }
-// }
+  //   // Convert and return
+  //   return User.fromJson(json.decode(response.body));
+  // }
+}

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:my_news_app/locator.dart';
 
 import 'core/constants/app_contstants.dart';
 import 'ui/router.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  // call the locator's setup function here.
+  setupLocator();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

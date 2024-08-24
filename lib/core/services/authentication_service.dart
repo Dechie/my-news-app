@@ -3,8 +3,6 @@ import 'dart:async';
 import '../models/user.dart';
 
 class AuthenticationService {
-  //final Api? _api;
-
   final StreamController<User> _userController = StreamController<User>();
 
   //AuthenticationService({required Api api}) : _api = api;
@@ -12,14 +10,19 @@ class AuthenticationService {
 
   Stream<User> get user => _userController.stream;
 
-  Future<bool> login(int userId) async {
-    //var fetchedUser = await _api?.getUserProfile(userId);
+  Future<bool> login(String email, String password) async {
+    /// this mocks the api request by creating a delay.
     await Future.delayed(const Duration(seconds: 3));
-    var fetchedUser = User.initial();
+    var fetchedUser = (email == "tyler@gmail.com" && password == "1234")
+        ? User.initial()
+        : null;
+    print("fetched user: $fetchedUser");
 
     var hasUser = fetchedUser != null;
     if (hasUser) {
       _userController.add(fetchedUser);
+    } else {
+      throw Exception("Incorrect Credentials");
     }
     return hasUser;
   }

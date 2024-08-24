@@ -9,11 +9,15 @@ class CommonButton extends StatelessWidget {
 
   final double width;
   final double height;
-  const CommonButton({
+
+  // for circular progress indicator in case loading value
+  Widget? childWidget;
+  CommonButton({
     super.key,
     required this.onPress,
     required this.width,
     required this.height,
+    this.childWidget,
   });
 
   @override
@@ -28,14 +32,15 @@ class CommonButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(commonBorderRadius),
         ),
         child: Center(
-          child: Text(
-            "Get Started",
-            style: GoogleFonts.inter(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-            ),
-          ),
+          child: childWidget ??
+              Text(
+                "Get Started",
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
+              ),
         ),
       ),
     );

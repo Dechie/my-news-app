@@ -1,176 +1,256 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_news_app/core/viewModels/login_v_model.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 import 'package:my_news_app/ui/shared/text_styles.dart';
 import 'package:my_news_app/ui/widgets/buttons/blue_large_button.dart';
 import 'package:my_news_app/ui/widgets/buttons/outlined_button.dart';
 import 'package:my_news_app/ui/widgets/login_text_field.dart';
+import 'package:provider/provider.dart';
 
+import '../../core/constants/app_contstants.dart';
+import '../../core/constants/enums.dart';
+import '../../locator.dart';
 import '../shared/ui_helpers.dart';
 import '../widgets/titled_widget.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    // since the figma design dimensions turn out to be
-    // larger than usual mobile phone dimensions, we will scale it
-    // to given screen size, and multiply every thing with that scale.
-
     var widthScale = size.width / 428;
     var heightScale = size.height / 926;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TitledWidget(
-                width: 329 * widthScale,
-                height: 88 * heightScale,
-                widthScale: widthScale,
-                heightScale: heightScale,
-                title: "Sign In",
-                subtitle:
-                    "Stay informed effortlessly. Sign in and explore a world of news",
-              ),
 
-              UIHelper.getVerticalSpaceMedium(size),
-              SizedBox(
-                height: 172 * heightScale,
-                width: double.infinity,
-                child: Form(
-                  child: Column(
-                    children: [
-                      LoginTextField(
-                        hintText: "Email",
-                        prefixSvgPath: "email.svg",
-                        width: double.infinity,
-                        height: 64 * heightScale,
-                        prefixSvgHeight: 20 * heightScale,
-                        suffixSvgHeight: 0,
+    /// we bind the view model with the view by
+    /// wrapping a [ChangeNotifierProvider] that takes
+    /// the generic of type [LoginVModel].
+    return ChangeNotifierProvider<LoginVModel>(
+      create: (context) => locator<LoginVModel>(),
+      child: Consumer<LoginVModel>(
+        /// now state will be managed with this consumer
+        /// and anything related to business logic as well
+        /// the viewmodel will talk to api services and manage
+        /// the business model, then update the state of this view
+        builder: (context, viewModel, child) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TitledWidget(
+                      width: 329 * widthScale,
+                      height: 88 * heightScale,
+                      widthScale: widthScale,
+                      heightScale: heightScale,
+                      title: "Sign In",
+                      subtitle:
+                          "Stay informed effortlessly. Sign in and explore a world of news",
+                    ),
+                    UIHelper.customVerticalSpace(32 * heightScale),
+                    SizedBox(
+                      height: 172 * heightScale,
+                      width: double.infinity,
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            LoginTextField(
+                              editingController: _emailController,
+                              hintText: "Email",
+                              prefixSvgPath: "email.svg",
+                              width: double.infinity,
+                              height: 64 * heightScale,
+                              prefixSvgHeight: 20 * heightScale,
+                              suffixSvgHeight: 0,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Email field empty";
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {},
+                            ),
+                            LoginTextField(
+                              editingController: _passwordController,
+                              hintText: "Password",
+                              width: double.infinity,
+                              height: 64 * heightScale,
+                              prefixSvgHeight: 20 * heightScale,
+                              suffixSvgHeight: 22 * heightScale,
+                              prefixSvgPath: "lock.svg",
+                              suffixSvgPath: "eye.svg",
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Password field empty";
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {},
+                            ),
+                            UIHelper.customVerticalSpace(6 * heightScale),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Forgot Password?",
+                                  style: sourceSansW400B(widthScale),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                      LoginTextField(
-                        hintText: "Password",
-                        width: double.infinity,
-                        height: 64 * heightScale,
-                        prefixSvgHeight: 20 * heightScale,
-                        suffixSvgHeight: 22 * heightScale,
-                        prefixSvgPath: "lock.svg",
-                        suffixSvgPath: "eye.svg",
-                      ),
-                      UIHelper.customVerticalSpace(6 * heightScale),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "Forgot Password?",
-                            style: sourceSansW400B(widthScale),
+                    ),
+                    if (viewModel.state == ViewState.error)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text(
+                          viewModel.error,
+                          style: sourceSansW400B(widthScale).copyWith(
+                            color: Colors.red,
                           ),
+                        ),
+                      ),
+                    CommonButton(
+                      childWidget: viewModel.state == ViewState.busy
+                          ? const CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : null,
+                      onPress: () async {
+                        if (_formKey.currentState!.validate()) {
+                          print(_emailController.text);
+                          print(_passwordController.text);
+                          // now the work starts
+                          viewModel.setState(ViewState.busy);
+                          bool success = await viewModel.login(
+                            _emailController.text,
+                            _passwordController.text,
+                          );
+                          if (success && mounted) {
+                            //
+                            if (mounted) {
+                              Navigator.of(context).pushNamed(RoutePaths.home);
+                            }
+                          }
+                        }
+                      },
+                      width: 392 * widthScale,
+                      height: 55 * heightScale,
+                    ),
+                    UIHelper.customVerticalSpace(20 * heightScale),
+                    SizedBox(
+                      height: 20 * heightScale,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 2,
+                              decoration: BoxDecoration(
+                                color: lighterGrey,
+                                border: Border.all(
+                                  color: lighterGrey,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(left: 8.0, right: 8.0),
+                            child: Text(
+                              "Or",
+                              style: sourceSansW400B(widthScale),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              height: 2,
+                              decoration: BoxDecoration(
+                                color: lighterGrey,
+                                border: Border.all(
+                                  color: lighterGrey,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              UIHelper.customVerticalSpace(20 * heightScale),
-              CommonButton(
-                onPress: () {},
-                width: 392 * widthScale,
-                height: 55 * heightScale,
-              ),
-              UIHelper.customVerticalSpace(20 * heightScale),
-              SizedBox(
-                height: 20 * heightScale,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 2,
-                        decoration: BoxDecoration(
-                          color: lighterGrey,
-                          border: Border.all(
-                            color: lighterGrey,
-                            width: 1,
-                          ),
-                        ),
-                      ),
                     ),
+                    UIHelper.customVerticalSpace(25 * heightScale),
+                    MyOutlinedButton(
+                      imagePath: "google-logo.png",
+                      text: "Sign in with Google",
+                      onPress: () {},
+                      width: 392 * widthScale,
+                      height: 55 * heightScale,
+                    ),
+                    UIHelper.customVerticalSpace(12),
+                    MyOutlinedButton(
+                      imagePath: "fb-logo.png",
+                      text: "Sign in with Facebook",
+                      onPress: () {},
+                      width: 392 * widthScale,
+                      height: 55 * heightScale,
+                    ),
+                    UIHelper.customVerticalSpace(
+                        20 * heightScale), // Adjusted padding
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                      child: Text(
-                        "Or",
-                        style: sourceSansW400B(widthScale),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 2,
-                        decoration: BoxDecoration(
-                          color: lighterGrey,
-                          border: Border.all(
-                            color: lighterGrey,
-                            width: 1,
+                      padding: const EdgeInsets.only(bottom: 18.0),
+                      child: SizedBox(
+                        height: 20 *
+                            heightScale, // You might want to adjust this as well
+                        width: double.infinity,
+                        child: Center(
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Don't have an account? ",
+                                  style: sourceSansW400B(12 *
+                                      widthScale), // Adjust font size using widthScale
+                                ),
+                                TextSpan(
+                                  text: "Sign Up",
+                                  style: GoogleFonts.sourceSans3(
+                                    color: darkColor2,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12 *
+                                        widthScale, // Adjust font size using widthScale
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {},
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    UIHelper.customVerticalSpace(
+                        18), // Add some space if needed
                   ],
                 ),
               ),
-              UIHelper.customVerticalSpace(25 * heightScale),
-              MyOutlinedButton(
-                imagePath: "google-logo.png",
-                text: "Sign in with Google",
-                onPress: () {},
-                width: 392 * widthScale,
-                height: 55 * heightScale,
-              ),
-              UIHelper.customVerticalSpace(12),
-              MyOutlinedButton(
-                imagePath: "fb-logo.png",
-                text: "Sign in with Facebook",
-                onPress: () {},
-                width: 392 * widthScale,
-                height: 55 * heightScale,
-              ),
-              //const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 18.0),
-                child: SizedBox(
-                  height: 20 * heightScale,
-                  child: Center(
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Don't have an account? ",
-                            style: sourceSansW400B(16),
-                          ),
-                          TextSpan(
-                            text: "Sign Up",
-                            style: GoogleFonts.sourceSans3(
-                              color: darkColor2,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                            ),
-                            recognizer: TapGestureRecognizer()..onTap = () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -9,6 +9,9 @@ class LoginTextField extends StatelessWidget {
   final String? suffixSvgPath;
   final prefixSvgHeight, suffixSvgHeight;
   final String hintText;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
+  final TextEditingController editingController;
 
   const LoginTextField({
     super.key,
@@ -19,6 +22,9 @@ class LoginTextField extends StatelessWidget {
     this.suffixSvgPath,
     required this.prefixSvgHeight,
     required this.suffixSvgHeight,
+    required this.validator,
+    required this.onSaved,
+    required this.editingController,
   });
 
   @override
@@ -28,6 +34,9 @@ class LoginTextField extends StatelessWidget {
       width: width,
       height: height,
       child: TextFormField(
+        validator: validator,
+        onSaved: onSaved,
+        controller: editingController,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: GoogleFonts.sourceSans3(
