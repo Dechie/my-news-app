@@ -1,12 +1,13 @@
 part of 'dummy_data.dart';
 
-/// news agencies
 /// the relationship between the news articles and
 /// the news agencies creates a circular dependencies
 /// so we have to create them statically first (by making)
 /// their arguments nullable, then assign those arguments
 /// later on
 ///
+
+/// news agencies
 var bbc = NewsAgency(
   id: 0,
   articlesPublished: [], // Empty at initialization
