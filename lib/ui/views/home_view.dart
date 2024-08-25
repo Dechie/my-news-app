@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:my_news_app/core/constants/enums.dart';
+import 'package:my_news_app/core/models/user.dart';
 import 'package:my_news_app/core/viewModels/home_v_model.dart';
 import 'package:my_news_app/ui/shared/text_styles.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
-import 'package:my_news_app/ui/views/baseView/base_view.dart';
+import 'package:my_news_app/ui/views/base/base_view.dart';
 import 'package:my_news_app/ui/widgets/bottom_nav_bar.dart';
 import 'package:my_news_app/ui/widgets/cards/news_card_one.dart';
 import 'package:my_news_app/ui/widgets/cards/news_card_two.dart';
-import 'package:my_news_app/ui/widgets/cards/skeletons/news_card_one_skeleton.dart';
-import 'package:my_news_app/ui/widgets/cards/skeletons/news_card_two_skeleton.dart';
+import 'package:my_news_app/ui/widgets/skeletons/news_card_one_skeleton.dart';
+import 'package:my_news_app/ui/widgets/skeletons/news_card_two_skeleton.dart';
 import 'package:my_news_app/ui/widgets/titled_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../shared/dummy_data.dart';
 import '../widgets/buttons/square_svg_button.dart';
@@ -35,6 +37,9 @@ class HomeView extends StatelessWidget {
     /// we bind the home view model with the home
     /// view, now the state will be managed by that
     /// class.
+    ///
+
+    String userName = Provider.of<User>(context).name.split(" ").first;
     return BaseView<HomeVModel>(
       /// we abstracted the values needed for all views
       /// into base-view, now we use its values
@@ -90,7 +95,7 @@ class HomeView extends StatelessWidget {
                       height: 63 * heightScale,
                       widthScale: widthScale,
                       heightScale: heightScale,
-                      title: "Welcome Back, Tyler!",
+                      title: "Welcome Back, $userName!",
                       subtitle: "Discover a world of news that matters to you",
                     ),
                     UIHelper.customVerticalSpace(24 * heightScale),

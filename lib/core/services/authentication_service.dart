@@ -8,7 +8,7 @@ class AuthenticationService {
   //AuthenticationService({required Api api}) : _api = api;
   AuthenticationService();
 
-  Stream<User> get user => _userController.stream;
+  Stream<User> get userController => _userController.stream;
 
   Future<bool> login(String email, String password) async {
     /// this mocks the api request by creating a delay.

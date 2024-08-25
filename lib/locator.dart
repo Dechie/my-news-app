@@ -4,6 +4,7 @@ import 'package:my_news_app/core/viewModels/home_v_model.dart';
 import 'package:my_news_app/core/viewModels/login_v_model.dart';
 
 import 'core/services/api.dart';
+import 'core/viewModels/discover_v_model.dart';
 
 /// unlike common practice with provider
 /// state management,  we will not be providing a bunch
@@ -25,4 +26,5 @@ void setupLocator() {
   /// view-models
   locator.registerLazySingleton(() => LoginVModel());
   locator.registerLazySingleton(() => HomeVModel());
+  locator.registerLazySingleton(() => DiscoverVModel());
 }

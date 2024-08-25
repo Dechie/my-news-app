@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_news_app/core/services/authentication_service.dart';
+import 'package:my_news_app/core/viewModels/base/base_view_movel.dart';
 
 import '../../locator.dart';
 import '../constants/enums.dart';
 
-class LoginVModel extends ChangeNotifier {
+class LoginVModel extends BaseViewModel {
   /// api service for authentication
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
@@ -13,14 +14,9 @@ class LoginVModel extends ChangeNotifier {
   /// or any other async task it is busy, and other times
   /// it is idle. also, if the value has an error, it takes
   /// a state of error. we model this with enum values.
-  ViewState _state = ViewState.idle;
-  String _error = "no error";
-
-  String get error => _error;
-  ViewState get state => _state;
 
   void clearError() {
-    _error = "";
+    setError(error);
     setState(ViewState.idle);
   }
 
@@ -35,7 +31,7 @@ class LoginVModel extends ChangeNotifier {
     } catch (e) {
       success = false;
       // if error happend, set state to error
-      _error = e.toString();
+      setError(e.toString());
       setState(ViewState.error);
     }
 
@@ -46,10 +42,4 @@ class LoginVModel extends ChangeNotifier {
     return success;
   }
 
-  /// we create a custom setState function that updates the
-  /// viewstate of the view/screen.
-  void setState(ViewState newState) {
-    _state = newState;
-    notifyListeners();
-  }
 }

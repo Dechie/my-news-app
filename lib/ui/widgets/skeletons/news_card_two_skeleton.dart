@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_news_app/ui/shared/app_colors.dart';
 import 'package:my_news_app/ui/shared/ui_helpers.dart';
-import 'package:my_news_app/ui/widgets/cards/skeletons/shimmer_widget.dart';
+import 'package:my_news_app/ui/widgets/skeletons/shimmer_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 // placeholder widget for newscardtwo

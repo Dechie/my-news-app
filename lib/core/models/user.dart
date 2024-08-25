@@ -22,13 +22,18 @@ class User {
     required this.image,
   }) : articlesPublished = [];
 
-  // factory User.fromJson(Map<String, dynamic> json) {
-  //   return User(
-  //     id: json['id'],
-  //     name: json['name'],
-  //     username: json['username'],
-  //   );
-  // }
+  factory User.fromMockAPI() {
+    return User(
+      id: 0,
+      name: 'Tyler Mason News',
+      username: 'thetylerm_news',
+      totalNews: 0,
+      followers: 5,
+      following: 10,
+      description: "This is Tyler Mason News, Enjoy!",
+      image: "tyler.png",
+    );
+  }
 
   factory User.initial() {
     return User(
