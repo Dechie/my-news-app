@@ -30,6 +30,7 @@ class LoginVModel extends ChangeNotifier {
   Future<bool> login(String email, String password) async {
     bool? success;
     try {
+      setState(ViewState.busy);
       success = await _authenticationService.login(email, password);
     } catch (e) {
       success = false;
@@ -52,4 +53,3 @@ class LoginVModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-

@@ -137,7 +137,6 @@ class _LoginViewState extends State<LoginView> {
                           print(_emailController.text);
                           print(_passwordController.text);
                           // now the work starts
-                          viewModel.setState(ViewState.busy);
                           bool success = await viewModel.login(
                             _emailController.text,
                             _passwordController.text,

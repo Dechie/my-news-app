@@ -21,7 +21,7 @@ class RouterUtil {
       case RoutePaths.splash:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case RoutePaths.home:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(builder: (_) => HomeView());
       case RoutePaths.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingView());
       case RoutePaths.login:
