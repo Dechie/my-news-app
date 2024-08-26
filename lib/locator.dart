@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:my_news_app/core/services/authentication_service.dart';
+import 'package:my_news_app/core/services/shared_pref_services.dart';
 import 'package:my_news_app/core/viewModels/home_v_model.dart';
 import 'package:my_news_app/core/viewModels/login_v_model.dart';
 import 'package:my_news_app/core/viewModels/splash_view_model.dart';
@@ -22,8 +23,8 @@ GetIt locator = GetIt.instance;
 /// from wherever we want using *this locator.
 void setupLocator() {
   /// service classes
+  locator.registerLazySingleton(() => SharedPreferencesService());
   locator.registerLazySingleton(() => AuthenticationService());
-  locator.registerFactory(() => AuthenticationService());
   locator.registerLazySingleton(() => Api());
 
   /// view-models

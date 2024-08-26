@@ -1,6 +1,7 @@
 # my-news-app
 
 > note: for authentication, user email is tyler@gmail.com and password is 1234.
+> also, the app checks for internet connection. it doesn't really need the connecition, but it just checks to make it look like it's fetching some data from api. also it will throw exceptions if there is no connection.
 
 ## This is a flutter app UI made with stacked architecture.
 
@@ -39,5 +40,6 @@ functionalities, we will be using static data from this file
 - carousel_slider: used in the custom page-view implementation, where the center image is larger than the others.
 - flutter_svg: used to render the svg icons all over the project
 - shimmer: for skeleton loading effect.
+- mockito: to mock service and api classes for unit tests.
 
 

@@ -44,7 +44,7 @@ class SplashView extends StatelessWidget {
             ),
           );
         }
-        if (viewModel.isLoggedIn) {
+        if (viewModel.hasUser) {
           Navigator.pushNamed(context, RoutePaths.home);
         } else {
           /// if user is not logged in then

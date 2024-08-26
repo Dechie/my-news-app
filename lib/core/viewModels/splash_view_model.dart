@@ -1,19 +1,24 @@
 import 'package:my_news_app/core/constants/enums.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../locator.dart';
+import '../services/shared_pref_services.dart';
 import 'base/base_view_movel.dart';
 
 class SplashVModel extends BaseViewModel {
-  static const String _isLoggedInKey = 'isLoggedIn';
-  bool _isLoggedIn = false;
-  bool get isLoggedIn => _isLoggedIn;
+  final SharedPreferencesService _prefsService =
+      locator<SharedPreferencesService>();
+
+  bool _hasUser = false;
+
+  SplashVModel();
+  bool get hasUser => _hasUser;
 
   /// Check if the user has logged in before.
   Future<void> checkLoginStatus() async {
     setState(ViewState.busy);
     try {
-      final prefs = await SharedPreferences.getInstance();
-      _isLoggedIn = prefs.getBool(_isLoggedInKey) ?? false;
+      bool hasAUser = await _prefsService.checkHasUser();
+      _hasUser = hasAUser;
     } catch (e) {
       setError(e.toString());
       setState(ViewState.error);
@@ -24,16 +29,14 @@ class SplashVModel extends BaseViewModel {
 
   /// Clear the login status, typically used on logout.
   Future<void> clearLoginStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_isLoggedInKey);
+    await _prefsService.clearLoginStatus();
   }
 
   /// Set the login status after a successful login or logout.
   Future<void> setLoginStatus(bool isLoggedIn) async {
     setState(ViewState.busy);
     try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool(_isLoggedInKey, isLoggedIn);
+      await _prefsService.setLoginStatus(isLoggedIn);
     } catch (e) {
       setError(e.toString());
       setState(ViewState.error);

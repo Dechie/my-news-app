@@ -44,6 +44,7 @@ dependencies:
   shimmer: ^3.0.0
   internet_connection_checker: ^2.0.0
   shared_preferences: ^2.3.2
+  mockito: ^5.4.4
 
 dev_dependencies:
   flutter_test:
