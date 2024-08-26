@@ -38,6 +38,8 @@ class DummyData {
   void setup() {
     newsAgencies = [
       bbc,
+      fox,
+      abc,
       nyt,
       forbes,
       espn,

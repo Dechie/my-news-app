@@ -8,8 +8,20 @@ part of 'dummy_data.dart';
 ///
 
 /// news agencies
-var bbc = NewsAgency(
+var abc = NewsAgency(
   id: 0,
+  articlesPublished: [], // Empty at initialization
+  sourceTitle: "Abc NEWS",
+  sourceUsername: "abcnews",
+  logo: "abc-logo.png",
+  description:
+      "Empowering your business journey with expert insights and influential perspectives.",
+  totalNews: 133,
+  followers: 1233,
+  following: 4,
+);
+var bbc = NewsAgency(
+  id: 1,
   articlesPublished: [], // Empty at initialization
   sourceTitle: "BBC NEWS",
   sourceUsername: "bbcnews",
@@ -20,6 +32,7 @@ var bbc = NewsAgency(
   followers: 1233,
   following: 4,
 );
+
 var espn = NewsAgency(
   id: 2,
   sourceTitle: "ESPN",
@@ -31,8 +44,9 @@ var espn = NewsAgency(
   followers: 1341,
   following: 14314,
 );
+
 var forbes = NewsAgency(
-  id: 2,
+  id: 3,
   sourceTitle: "Forbes",
   sourceUsername: "forbesnews",
   description:
@@ -42,8 +56,20 @@ var forbes = NewsAgency(
   followers: 1341,
   following: 14314,
 );
+var fox = NewsAgency(
+  id: 4,
+  articlesPublished: [], // Empty at initialization
+  sourceTitle: "Fox NewS",
+  sourceUsername: "foxnews",
+  logo: "fox-logo.png",
+  description:
+      "Empowering your business journey with expert insights and influential perspectives.",
+  totalNews: 133,
+  followers: 1233,
+  following: 4,
+);
 var nyt = NewsAgency(
-  id: 1,
+  id: 5,
   sourceTitle: "The NYT",
   sourceUsername: "thenyt",
   description:

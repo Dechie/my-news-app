@@ -194,7 +194,20 @@ class HomeView extends StatelessWidget {
                             size: size,
                           );
                         },
-                      ),
+                      )
+                    else if (viewModel.state == ViewState.error)
+                      SizedBox(
+                        width: 392 * widthScale,
+                        height: 105 * heightScale,
+                        child: Center(
+                          child: Text(
+                            viewModel.error,
+                            style: sourceSansW400A(heightScale).copyWith(
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      )
                   ],
                 ),
               ),

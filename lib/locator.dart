@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:my_news_app/core/services/authentication_service.dart';
 import 'package:my_news_app/core/viewModels/home_v_model.dart';
 import 'package:my_news_app/core/viewModels/login_v_model.dart';
+import 'package:my_news_app/core/viewModels/splash_view_model.dart';
+import 'package:my_news_app/core/viewModels/user_profile_v_model.dart';
 
 import 'core/services/api.dart';
 import 'core/viewModels/discover_v_model.dart';
@@ -24,7 +26,9 @@ void setupLocator() {
   locator.registerLazySingleton(() => Api());
 
   /// view-models
+  locator.registerLazySingleton(() => SplashVModel());
   locator.registerLazySingleton(() => LoginVModel());
   locator.registerLazySingleton(() => HomeVModel());
   locator.registerLazySingleton(() => DiscoverVModel());
+  locator.registerLazySingleton(() => UserProfileVModel());
 }

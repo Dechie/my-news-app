@@ -6,7 +6,6 @@ import 'package:my_news_app/ui/shared/ui_helpers.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../core/constants/app_contstants.dart';
-import '../widgets/bottom_nav_bar.dart';
 import '../widgets/buttons/blue_large_button.dart';
 
 // this is the onboarding page, which contains the page
@@ -35,7 +34,6 @@ class _OnboardingViewState extends State<OnboardingView> {
     // each component in this screen have dimensions in the
     // form of  i.e. different ratios of size.width and size.height.
     return Scaffold(
-      
       backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -133,7 +131,12 @@ class _OnboardingViewState extends State<OnboardingView> {
           CommonButton(
             width: size.width * 0.89,
             height: 45.0,
-            onPress: () {},
+            onPress: () {
+              /// if user came here, it means he wasn't
+              /// logged in before, so he has to go to
+              /// login page next.
+              Navigator.of(context).pushNamed(RoutePaths.login);
+            },
           ),
         ],
       ),

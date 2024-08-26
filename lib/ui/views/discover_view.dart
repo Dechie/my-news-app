@@ -1,6 +1,3 @@
-// since the figma design dimensions turn out to be
-// larger than usual mobile phone dimensions, we will scale it
-// to given screen size, and multiply every thing with that scale.
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_news_app/core/constants/app_contstants.dart';
@@ -23,12 +20,21 @@ class DiscoverView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// since the figma design dimensions turn out to be
+    /// larger than usual mobile phone dimensions, we will scale it
+    /// to given screen size, and multiply every thing with that scale.
     var size = MediaQuery.of(context).size;
     var widthScale = size.width / 428;
     var heightScale = size.height / 926;
 
+    /// we bind the view model with the view
+    /// using the implementation of [BaseViewModel]
+    /// check [BaseView]'s class for clarification on how it
+    /// was implemented.
     return BaseView<DiscoverVModel>(
       onModelReady: (viewModel) {
+        /// kind of initState, but implemented
+        /// for this stateless widget.
         viewModel.getAllArticles();
         viewModel.getNewsAgencies();
         viewModel.getRecommended();
@@ -159,6 +165,19 @@ class DiscoverView extends StatelessWidget {
                       ),
                     ),
                     UIHelper.customVerticalSpace(14),
+                    if (viewModel.state == ViewState.error)
+                      SizedBox(
+                        width: 392 * widthScale,
+                        height: 105 * heightScale,
+                        child: Center(
+                          child: Text(
+                            viewModel.error,
+                            style: sourceSansW400A(heightScale).copyWith(
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ),
                     if (viewModel.state == ViewState.busy)
                       NewsCardTwoSkeleton(
                         size: size,

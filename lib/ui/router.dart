@@ -25,7 +25,7 @@ class RouterUtil {
       case RoutePaths.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingView());
       case RoutePaths.login:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => LoginView());
       case RoutePaths.discover:
         return MaterialPageRoute(builder: (_) => const DiscoverView());
       case RoutePaths.singlePublisher:
