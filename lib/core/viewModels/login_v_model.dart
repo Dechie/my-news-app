@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:my_news_app/core/services/authentication_service.dart';
 import 'package:my_news_app/core/viewModels/base/base_view_movel.dart';
 
@@ -9,6 +8,7 @@ class LoginVModel extends BaseViewModel {
   /// api service for authentication
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
+  AuthenticationService get authenticationService => _authenticationService;
 
   /// the state of the view. while it's doing api request
   /// or any other async task it is busy, and other times
@@ -41,5 +41,4 @@ class LoginVModel extends BaseViewModel {
     }
     return success;
   }
-
 }

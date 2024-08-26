@@ -23,6 +23,7 @@ GetIt locator = GetIt.instance;
 void setupLocator() {
   /// service classes
   locator.registerLazySingleton(() => AuthenticationService());
+  locator.registerFactory(() => AuthenticationService());
   locator.registerLazySingleton(() => Api());
 
   /// view-models
