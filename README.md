@@ -17,7 +17,7 @@ are divided into respective folders.
 ## notable files in the whole project include:
 - `lib/locator.dart`: used to register api's and providers so that the views and viewmodels access them easily.
 - `lib/core/viewModels/base/base_view_movel.dart`: this class abstracts the common attributes of all out view models. including the states and the methods that set the state and notify listeners.
-- :/// the basic abstracted value of views. it wraps the scaffold widget with a `ChangeNotifierProvider` which takes a generic type `T`. `T` is a subclass of `BaseViewModel`.
+- `lib/ui/views/base/base_view.dart` : the basic abstracted value of views. it wraps the scaffold widget with a `ChangeNotifierProvider` which takes a generic type `T`. `T` is a subclass of `BaseViewModel`.
 - `lib/core/constants/app_contstants.dart`: contains the string values of the routes of all the screens in the app: i.e, "views" in the mvvm convention, and hence all the possible screens for navigation.
 - `lib/ui/router.dart`: generates routes for the named navigator to use
 - `lib/ui/shared/dummy_data.dart`: since we didn't implement real api and auth
