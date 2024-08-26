@@ -64,9 +64,14 @@ class DiscoverView extends StatelessWidget {
                       style: sourceSansW400A(widthScale),
                     ),
                     UIHelper.customVerticalSpace(14 * heightScale),
-                    CustomSearchBar(
-                      widthScale: widthScale,
-                      heightScale: heightScale,
+
+                    /// when u press this it leads to that search
+                    /// page.
+                    GestureDetector(
+                      child: CustomSearchBar(
+                        widthScale: widthScale,
+                        heightScale: heightScale,
+                      ),
                     ),
                     UIHelper.customVerticalSpace(24 * heightScale),
                     Padding(

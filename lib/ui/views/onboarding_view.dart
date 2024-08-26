@@ -33,6 +33,8 @@ class _OnboardingViewState extends State<OnboardingView> {
     // view. size has width and height components, and
     // each component in this screen have dimensions in the
     // form of  i.e. different ratios of size.width and size.height.
+    var widthScale = size.width / 428;
+    var heightScale = size.height / 926;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -47,13 +49,13 @@ class _OnboardingViewState extends State<OnboardingView> {
             // it's a custom implementation of pageview using
             // carousel_slider and smooth_page_indicator packages
             width: size.width,
-            height: size.height * 0.41,
+            height: 383.48 * heightScale,
             //color: Colors.red,
             child: CarouselSlider.builder(
               itemCount: 3,
               options: CarouselOptions(
                   enlargeCenterPage: true,
-                  height: size.height * 0.41,
+                  height: 383.48 * heightScale,
                   scrollDirection: Axis.horizontal,
                   reverse: false,
                   onPageChanged: (val, _) {
@@ -68,7 +70,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               // then the smooth indicator uses that index to show
               // the dots at the bottom
               itemBuilder: (context, index, realIndex) => SizedBox(
-                height: size.height * .41,
+                height: 383.48 * heightScale,
                 width: size.width * .8,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
@@ -85,8 +87,9 @@ class _OnboardingViewState extends State<OnboardingView> {
               // this provides the separatioin between the listview items.
             ),
           ),
-          UIHelper.getVerticalSpaceMedium(size), // 45.9 / 926.75 = 0.049
+
           // UIHelper contains space widgets and other useful widgets as well
+          UIHelper.customVerticalSpace(46 * heightScale),
           SizedBox(
             width: 63.0,
             height: 9,
@@ -104,7 +107,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
             ),
           ),
-          UIHelper.getVerticalSpaceMedium(size),
+          UIHelper.customVerticalSpace(46 * heightScale),
           Text(
             "First To Know",
             style: GoogleFonts.inter(
@@ -113,15 +116,15 @@ class _OnboardingViewState extends State<OnboardingView> {
               color: const Color(0xff333647),
             ),
           ),
-          UIHelper.getVerticalSpaceMedium(size),
+          UIHelper.customVerticalSpace(46 * heightScale),
           SizedBox(
-            width: 246,
-            height: 45,
+            width: 246 * widthScale,
+            height: 55 * heightScale,
             child: Text(
               "All news in one place, be the first to know last news",
               style: GoogleFonts.inter(
                 fontWeight: FontWeight.w400,
-                fontSize: 18,
+                fontSize: 18 * widthScale,
                 color: const Color(0xff7C82A1),
               ),
             ),
@@ -130,7 +133,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           // this button navigates to the next screen
           CommonButton(
             width: size.width * 0.89,
-            height: 45.0,
+            height: 55 * heightScale,
             onPress: () {
               /// if user came here, it means he wasn't
               /// logged in before, so he has to go to

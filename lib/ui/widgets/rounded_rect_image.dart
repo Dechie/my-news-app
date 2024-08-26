@@ -14,16 +14,18 @@ class RoundedRectImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height,
       width: width,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.all(
-          Radius.circular(borderRadius),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(borderRadius),
+          ),
         ),
       ),
     );

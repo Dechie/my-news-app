@@ -46,7 +46,7 @@ class LoginView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TitledWidget(
-                      width: 329 * widthScale,
+                      width: 352 * widthScale,
                       height: 88 * heightScale,
                       widthScale: widthScale,
                       heightScale: heightScale,
