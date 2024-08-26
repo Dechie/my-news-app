@@ -1,6 +1,6 @@
 import 'package:my_news_app/core/models/news_agency.dart';
 
-import '../../core/models/article.dart';
+import '../../models/article.dart';
 
 /// this class is required because
 /// the data is complex and it would have better

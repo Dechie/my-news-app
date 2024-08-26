@@ -13,7 +13,7 @@ import 'package:my_news_app/ui/widgets/skeletons/news_card_two_skeleton.dart';
 import 'package:my_news_app/ui/widgets/titled_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../shared/dummy_data.dart';
+import '../../core/services/data/dummy_data.dart';
 import '../widgets/buttons/square_svg_button.dart';
 
 class HomeView extends StatelessWidget {

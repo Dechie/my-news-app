@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_news_app/ui/shared/text_styles.dart';
 
 import '../../core/models/article.dart';
-import '../shared/dummy_data.dart';
+import '../../core/services/data/dummy_data.dart';
 
 /// here we declare a widget using
 /// flutter's advanced search functionality

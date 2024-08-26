@@ -1,7 +1,7 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:my_news_app/core/models/article.dart';
 import 'package:my_news_app/core/models/news_agency.dart';
-import 'package:my_news_app/ui/shared/dummy_data.dart';
+import 'package:my_news_app/core/services/data/dummy_data.dart';
 
 import '../models/user.dart';
 
