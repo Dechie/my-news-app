@@ -1,5 +1,6 @@
 # my-news-app
 
+![Demo Video:](demos/demo_vid1.mp4)
 > note: for authentication, user email is tyler@gmail.com and password is 1234.
 > also, the app checks for internet connection. it doesn't really need the connecition, but it just checks to make it look like it's fetching some data from api. also it will throw exceptions if there is no connection.
 
